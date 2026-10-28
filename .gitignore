@@ -1,0 +1,45 @@
+.DS_Store
+
+# Local configuration and environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+.python-version
+config/*.local.yaml
+config/*.local.yml
+config/*credentials*
+config/*secrets*
+*.pem
+*.key
+
+# Python and tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+node_modules/
+.cache/
+.ipynb_checkpoints/
+*.log
+
+# User-provided datasets and generated artifacts
+/data/*
+!/data/README.md
+/results/
+/logs/
+/checkpoints/
+*.safetensors
+*.pt
+*.pth
+*.onnx
+
+# Build artifacts
+build/
+dist/
+*.egg-info/

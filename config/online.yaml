@@ -1,0 +1,14 @@
+# Online model configuration. Set model_name before running real tasks.
+extends: base.yaml
+
+models:
+  llm:
+    provider: openai
+    model_name: "your-model-id"
+    base_url: ""  # Empty uses the provider default; set for a compatible gateway.
+    api_key: null  # Read the provider key from the environment or project .env.
+    temperature_policy: omit
+    token_limit_parameter: max_tokens
+
+logging:
+  log_file: logs/online.log

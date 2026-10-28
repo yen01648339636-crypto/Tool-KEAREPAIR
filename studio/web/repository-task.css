@@ -1,0 +1,135 @@
+/* Repository-first setup: compact source configuration, progressive test inputs. */
+.modal.repository-task-modal {width: min(940px, calc(100vw - 40px)); max-width: 940px}
+.repository-task-modal .modal-header {padding: 24px 28px}
+.repository-task-modal .modal-header h2 {font-size: 23px}
+.repository-task-modal .modal-header p {font-size: 14px; margin-top: 7px; line-height: 1.6}
+.repository-task-modal .modal-body {padding: 22px 28px 26px}
+.repository-task-modal .modal-footer {padding: 18px 28px; gap: 18px; background: var(--code)}
+.repository-task {font-size: 14px; line-height: 1.6}
+.repo-steps {display: flex; gap: 28px; list-style: none; margin: 0 0 26px; padding: 0; color: var(--faint); font-size: 13px}
+.repo-steps li {display: flex; align-items: center; gap: 9px; position: relative}
+.repo-steps li:first-child:after {content: ''; width: 18px; height: 1px; background: var(--border); position: absolute; right: -23px}
+.repo-steps li>span {display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid var(--border); border-radius: 50%; font-size: 12px; font-weight: 600}
+.repo-steps li>span .icon {width: 15px; height: 15px}
+.repo-steps .current {color: var(--text); font-weight: 600}
+.repo-steps .current>span, .repo-steps .complete>span {border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); background: var(--accent-soft); color: var(--accent)}
+.repo-connect {padding: 27px; border: 1px solid var(--border); border-radius: 14px; background: radial-gradient(ellipse at top right, var(--accent-soft), transparent 65%), var(--code)}
+.repo-connect-icon {display: grid; place-items: center; width: 43px; height: 43px; border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border)); border-radius: 10px; background: var(--accent-soft); color: var(--accent); margin-bottom: 14px}
+.repo-connect h3 {font-size: 20px; margin: 0 0 5px}
+.repo-connect>p {font-size: 14px; color: var(--muted); margin: 0 0 22px}
+.repo-connect>label, .repo-field>label {display: flex; align-items: center; gap: 12px; justify-content: space-between; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 9px}
+.repo-required {font-weight: 400; color: var(--faint); font-size: 11px}
+.repo-url-row {display: flex; align-items: stretch; gap: 10px}
+.repo-url-row input {min-width: 0; width: 100%; min-height: 46px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 9px; font-size: 14px}
+.repo-url-row .button {white-space: nowrap; flex-shrink: 0}
+.repo-connect>p#repo-url-help {font-size: 12px; color: var(--faint); margin: 12px 0 0; line-height: 1.65}
+.repo-section-caption {display: flex; justify-content: space-between; gap: 12px; align-items: baseline; font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--text)}
+.repo-section-caption>span {font-size: 12px; color: var(--faint); font-weight: 400}
+.repo-resolved {display: flex; align-items: center; gap: 13px; padding: 15px 17px; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border)); border-radius: 11px; margin-bottom: 22px}
+.repo-resolved-icon {color: var(--accent); display: flex; flex-shrink: 0}
+.repo-resolved>div:nth-child(2) {flex: 1; min-width: 0}
+.repo-resolved strong {display: block; font-size: 14px; color: var(--text); font-weight: 600}
+.repo-resolved span {display: block; font-size: 12px; color: var(--muted); overflow-wrap: anywhere; margin-top: 3px}
+.repo-resolved>.button {flex-shrink: 0}
+.repo-target-selector {margin-bottom: 22px}
+.repo-target-list {display: grid; gap: 8px; max-height: 200px; overflow: auto; padding: 2px}
+.repo-target {display: flex; align-items: center; text-align: left; gap: 12px; padding: 12px 14px; border: 1px solid var(--border-soft); border-radius: 9px; background: var(--code); color: var(--muted); cursor: pointer; width: 100%}
+.repo-target.selected {background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 55%, var(--border))}
+.repo-target-check {width: 19px; height: 19px; border: 1px solid var(--border); border-radius: 50%; flex-shrink: 0; display: grid; place-items: center; color: var(--accent)}
+.repo-target-check>.icon {width: 13px; height: 13px}
+.repo-target.selected .repo-target-check {border-color: var(--accent)}
+.repo-target-copy {min-width: 0; flex: 1}
+.repo-target-copy strong {display: block; font-family: var(--mono); font-size: 12px; color: var(--text); font-weight: 400; overflow-wrap: anywhere}
+.repo-target-copy>span {font-size: 11px; color: var(--faint); display: block; margin-top: 3px; overflow-wrap: anywhere}
+.repo-target .pill {font-size: 10px}
+.repo-source-section {margin-bottom: 24px}
+.repo-section-heading {display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 15px}
+.repo-section-heading h3 {font-size: 15px; margin: 0}
+.repo-section-heading>span {font-size: 11px; color: var(--faint)}
+.repo-fields {display: grid; gap: 16px}
+.repo-fields.two-columns {grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr)}
+.repo-field {min-width: 0}
+.repo-field input, .repo-field select {width: 100%; min-width: 0; min-height: 43px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; line-height: 1.5}
+.repo-field p {font-size: 11px; color: var(--faint); line-height: 1.65; margin: 8px 0 0}
+.repo-plan-fieldset {margin: 0; padding: 0; border: 0; min-width: 0}
+.repo-plan-fieldset legend {padding: 0; font-size: 15px; font-weight: 600; color: var(--text)}
+.repo-section-note {font-size: 12px; color: var(--faint); margin: 5px 0 14px}
+.repo-plans {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px}
+.repo-plan {position: relative; display: flex; flex-direction: column; cursor: pointer; padding: 16px 14px 13px; border: 1px solid var(--border); border-radius: 11px; background: var(--code); transition: border-color .18s, background .18s}
+.repo-plan.selected {border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent)}
+.repo-plan input {position: absolute; top: 17px; right: 14px; width: 15px; min-height: 15px; height: 15px; margin: 0; accent-color: var(--accent)}
+.repo-plan:focus-within {outline: 2px solid var(--accent); outline-offset: 3px}
+.repo-plan-symbol {color: var(--faint); display: flex; margin-bottom: 11px}
+.repo-plan-symbol>.icon {width: 21px; height: 21px}
+.repo-plan.selected .repo-plan-symbol {color: var(--accent)}
+.repo-plan>strong {font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px}
+.repo-plan>span:not(.repo-plan-symbol) {font-size: 12px; line-height: 1.6; color: var(--muted); flex: 1}
+.repo-plan>small {font-size: 10px; color: var(--faint); padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--border-soft); line-height: 1.5}
+.repo-plan.unavailable {opacity: .55; cursor: not-allowed}
+.repo-test-inputs {margin-top: 17px; padding: 17px; border: 1px solid var(--border); border-radius: 11px; background: var(--code)}
+.repo-test-heading {display: flex; gap: 10px; align-items: flex-start; margin-bottom: 15px}
+.repo-test-heading>.icon {width: 18px; height: 18px; color: var(--accent); margin-top: 2px; flex-shrink: 0}
+.repo-test-heading h3 {font-size: 13px; margin: 0 0 4px}
+.repo-test-heading p {font-size: 11px; color: var(--faint); margin: 0; line-height: 1.7}
+.repo-test-source {display: inline-flex; margin: 0 0 17px}
+.repo-test-source>button {padding: 7px 13px; font-size: 12px}
+.repo-upload-label {display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 9px}
+.repo-upload-label>strong {font-size: 13px; font-weight: 600; color: var(--text)}
+.repo-file-picker {position: relative; display: flex; align-items: center; gap: 12px; padding: 15px; min-height: 75px; border: 1px dashed var(--border); border-radius: 9px; cursor: pointer; background: var(--surface)}
+.repo-file-picker:hover {border-color: var(--accent); background: var(--accent-soft)}
+.repo-file-picker:focus-within {outline: 2px solid var(--accent); outline-offset: 3px}
+.repo-file-picker>input {position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; padding: 0; min-height: 0}
+.repo-file-picker>.icon {color: var(--accent); width: 22px; height: 22px; flex-shrink: 0}
+.repo-file-picker>span:not(.spinner) {display: flex; flex-direction: column; gap: 3px; min-width: 0}
+.repo-file-picker strong {font-size: 13px; font-weight: 600; color: var(--text)}
+.repo-file-picker small {font-size: 11px; color: var(--faint); overflow-wrap: anywhere}
+.repo-file-picker.uploading {cursor: wait}
+.repo-uploaded {display: flex; align-items: center; min-height: 75px; gap: 10px; padding: 11px 12px; border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border)); background: var(--accent-soft); border-radius: 9px}
+.repo-uploaded>.icon {width: 20px; height: 20px; color: var(--accent); flex-shrink: 0}
+.repo-uploaded>div {min-width: 0; flex: 1}
+.repo-uploaded strong {display: block; color: var(--text); font-size: 12px; font-weight: 550; overflow-wrap: anywhere}
+.repo-uploaded small {display: block; color: var(--faint); font-size: 11px; margin-top: 3px}
+.repo-uploaded>.icon-button {width: 28px; height: 28px; flex-shrink: 0}
+.repo-upload-note {font-size: 11px; color: var(--faint); line-height: 1.7; margin: 15px 0 0; padding-top: 12px; border-top: 1px solid var(--border-soft)}
+.repo-upload-error {font-size: 12px; color: var(--red); margin-top: 10px; line-height: 1.6}
+.repo-upload-error>.button {display: flex; min-height: 28px; font-size: 11px; padding: 5px 9px; margin-top: 7px}
+.repo-advanced {margin-top: 21px; border-top: 1px solid var(--border-soft)}
+.repo-advanced>summary {padding: 15px 0 0; font-size: 12px; color: var(--muted); cursor: pointer}
+.repo-advanced>summary span {float: right; font-size: 11px; color: var(--faint)}
+.repo-advanced[open]>summary {margin-bottom: 15px}
+.repo-error {margin-top: 17px; padding: 12px 14px; border: 1px solid color-mix(in srgb, var(--red) 30%, var(--border)); background: color-mix(in srgb, var(--red) 6%, var(--surface)); border-radius: 8px; color: var(--red); font-size: 13px; line-height: 1.6}
+.repo-error[hidden] {display: none}
+.repo-footer-summary {min-width: 0; display: flex; flex-direction: column; gap: 3px}
+.repo-footer-summary>span {font-size: 10px; letter-spacing: .1em; font-weight: 600; color: var(--faint)}
+.repo-footer-summary>strong {font-size: 12px; font-weight: 500; color: var(--muted)}
+.repo-footer-summary>small {font-size: 10px; color: var(--faint)}
+.repo-footer-actions {display: flex; gap: 9px; flex-shrink: 0}
+@media(max-width: 700px) {
+ .modal.repository-task-modal {width: calc(100vw - 20px); max-height: calc(100dvh - 20px)}
+ .repository-task-modal .modal-header, .repository-task-modal .modal-body {padding: 19px 18px}
+ .repository-task-modal .modal-footer {padding: 15px 18px}
+ .repo-connect {padding: 20px 17px}
+ .repo-connect h3 {font-size: 18px}
+ .repo-plans {grid-template-columns: 1fr}
+ .repo-plan {display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 3px 12px; padding: 14px 38px 14px 14px}
+ .repo-plan-symbol {grid-row: 1 / 4; margin: 2px 0 0}
+ .repo-plan>strong {margin: 0}
+ .repo-plan>small {border: 0; padding: 0; margin: 5px 0 0; grid-column: 2}
+ .repo-fields.two-columns {grid-template-columns: 1fr; gap: 14px}
+ .repo-section-caption {align-items: start}
+ .repo-section-caption>span {max-width: 140px; text-align: right}
+ .repo-resolved {gap: 9px; padding: 12px}
+ .repo-resolved-icon {display: none}
+ .repo-resolved>.button {padding: 8px 10px}
+ .repo-advanced>summary span {float: none; display: block; margin: 5px 0 0 14px}
+}
+@media(max-width: 420px) {
+ .repo-url-row {flex-direction: column}
+ .repo-url-row>.button {justify-content: center}
+ .repository-task-modal .modal-footer {flex-wrap: wrap}
+ .repo-footer-summary {width: 100%}
+ .repo-footer-actions {width: 100%; justify-content: flex-end}
+ .repo-footer-actions>.button {flex: 1; justify-content: center}
+ .repo-target>.pill {display: none}
+}
+@media(prefers-reduced-motion: reduce) {.repo-plan {transition: none}}

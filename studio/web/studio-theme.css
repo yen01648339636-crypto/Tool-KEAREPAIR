@@ -1,0 +1,485 @@
+/* Studio finish: shared colour, typography and interaction treatments.
+   Loaded after the feature layouts so their sizing and responsive behaviour
+   stay independent of the visual theme. No external font or image requests. */
+:root {
+  --sans: "Kea Sans", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif;
+  --mono: "Kea Mono", "Noto Sans Mono CJK SC", Consolas, monospace;
+  --bg: #080e18;
+  --sidebar: #0c1421;
+  --surface: #111c2c;
+  --raised: #19283c;
+  --code: #0c1523;
+  --border: #2b3e56;
+  --border-soft: #223248;
+  --text: #edf4ff;
+  --muted: #bdcce0;
+  --faint: #9bafc8;
+  --accent: #68e8d0;
+  --accent-soft: #68e8d012;
+  --cyan: #8cc6ff;
+  --purple: #c4b5ff;
+  --amber: #f0c58a;
+  --red: #ffa6ac;
+  --panel-shadow: 0 12px 30px #02050b24, inset 0 1px 0 #d7eaff06;
+  --shadow: 0 24px 80px #01050d80;
+  --panel-fill: linear-gradient(135deg, #8cc6ff06, transparent 65%), var(--surface);
+  --accent-line: linear-gradient(90deg, var(--accent), var(--cyan));
+  --frame-glow: #4c8eff0a;
+  --grid-line: #8cc6ff04;
+}
+
+[data-theme="light"] {
+  --bg: #edf3f9;
+  --sidebar: #f7faff;
+  --surface: #fff;
+  --raised: #eaf1f9;
+  --code: #f5f8fc;
+  --border: #c6d4e5;
+  --border-soft: #dce5ef;
+  --text: #142b45;
+  --muted: #405b78;
+  --faint: #526b86;
+  --accent: #087f72;
+  --accent-soft: #087f720c;
+  --cyan: #2669b6;
+  --purple: #6c4ab7;
+  --amber: #805818;
+  --red: #b33145;
+  --panel-shadow: 0 8px 24px #304c7007, inset 0 1px 0 #fff;
+  --shadow: 0 24px 80px #18385b26;
+  --panel-fill: linear-gradient(135deg, #4f9ce904, transparent 65%), var(--surface);
+  --frame-glow: #3f8ade09;
+  --grid-line: #385d8807;
+}
+
+/* Readable text stays solid: light effects belong to the surrounding chrome. */
+body {font: 400 15px/1.75 var(--sans); letter-spacing: 0; text-rendering: optimizeLegibility}
+button, input, select, textarea {font-family: var(--sans); letter-spacing: 0}
+button {font-weight: 500}
+h1, h2, h3, h4 {letter-spacing: -.02em; font-weight: 600}
+code, pre, .mono {font-family: var(--mono); font-variant-ligatures: none; letter-spacing: 0}
+::selection {background: color-mix(in srgb, var(--accent) 25%, transparent); color: var(--text)}
+:focus-visible {outline: 2px solid var(--accent); outline-offset: 4px}
+input::placeholder, textarea::placeholder {color: var(--faint); opacity: 1}
+.pill {font-size: 12px; font-weight: 500; border-radius: 6px; padding: 3px 9px}
+.pill.teal {color: var(--accent); border-color: color-mix(in srgb, var(--accent) 24%, transparent); background: var(--accent-soft)}
+.pill.purple {color: var(--purple); border-color: color-mix(in srgb, var(--purple) 25%, transparent); background: color-mix(in srgb, var(--purple) 7%, transparent)}
+.pill.amber {color: var(--amber); border-color: color-mix(in srgb, var(--amber) 25%, transparent); background: color-mix(in srgb, var(--amber) 7%, transparent)}
+.pill.red {color: var(--red); border-color: color-mix(in srgb, var(--red) 25%, transparent); background: color-mix(in srgb, var(--red) 7%, transparent)}
+
+/* The frame provides the technical character without competing with the work. */
+.shell {grid-template-columns: 240px minmax(0, 1fr)}
+.main {background: radial-gradient(ellipse at 82% 0, var(--frame-glow), transparent 60%), linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: auto, 40px 40px, 40px 40px}
+.sidebar {width: 240px; padding: 28px 18px 22px; background: linear-gradient(180deg, var(--frame-glow), transparent 32%), var(--sidebar); border-right-color: var(--border-soft)}
+.brand {gap: 12px; padding: 0 6px 34px}
+.brand-logo {width: 40px; height: 40px; border-radius: 0; background: none; border: 0; box-shadow: none}
+.brand-logo img {display: block; width: 100%; height: 100%; object-fit: contain}
+.boot-mark {width: 64px; height: 64px; background: none; border-radius: 0; box-shadow: none}
+.boot-mark img {display: block; width: 100%; height: 100%}
+.brand-word {font-size: 22px; font-weight: 650; letter-spacing: -.8px}
+.brand-word span {font-size: 11px; letter-spacing: 3px; margin-top: 5px; color: var(--faint)}
+.nav-label {font-size: 11px; letter-spacing: 1.6px; padding: 0 13px 13px}
+.nav-button {min-height: 48px; padding: 12px 14px; margin: 6px 0; border-radius: 10px; gap: 12px; font-size: 14px; color: var(--muted); transition: color .18s, background .18s, box-shadow .18s}
+.nav-button>.icon {width: 19px; height: 19px}
+.nav-button.active {color: var(--accent); background: linear-gradient(100deg, var(--accent-soft), var(--frame-glow)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent), 0 5px 18px #0000000a}
+.nav-button.active:before {left: 0; height: 20px; width: 3px; border-radius: 0 3px 3px 0; box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent)}
+.nav-button:hover {color: var(--text); background: var(--raised)}
+.nav-badge {font: 12px/1.5 var(--sans); padding: 1px 6px; border-color: var(--border); color: var(--faint)}
+.engine-card {background: var(--panel-fill); border-color: var(--border); padding: 18px 15px; box-shadow: var(--panel-shadow)}
+.engine-title {font-size: 13px; color: var(--text)}
+.engine-card p {font-size: 12px; line-height: 1.9; color: var(--muted)}
+.engine-spark {gap: 4px; padding-top: 12px; border-top: 1px solid var(--border-soft)}
+.engine-spark i {background: linear-gradient(0deg, color-mix(in srgb, var(--cyan) 12%, transparent), color-mix(in srgb, var(--accent) 55%, transparent)); border-radius: 2px 2px 0 0}
+.workspace-user {gap: 10px; padding: 22px 2px 0}
+.workspace-user strong {font-size: 13px; font-weight: 550}
+.workspace-user p {font-size: 12px; color: var(--faint)}
+.avatar {width: 36px; height: 36px; background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 25%, var(--border)); color: var(--accent)}
+.main .topbar {height: 62px; background: color-mix(in srgb, var(--sidebar) 92%, transparent); border-bottom-color: var(--border-soft); padding: 0 28px}
+.breadcrumb {font-size: 13px; gap: 12px}
+.breadcrumb strong {font-weight: 550; color: var(--text)}
+.main .topbar .local-status {font-size: 11px; letter-spacing: .04em; padding: 5px 9px; border: 1px solid var(--border-soft); border-radius: 6px; background: var(--code)}
+.local-status .dot {box-shadow: 0 0 0 3px var(--accent-soft)}
+.main .topbar .icon-button {width: 34px; height: 34px}
+.main .content {padding: 26px 28px; max-width: 1800px}
+.main.workbench-mode .content {padding: 24px 28px 28px}
+.page-footer {font-size: 11px; border-top: 1px solid var(--border-soft); padding-top: 20px; letter-spacing: .04em}
+
+/* Shared controls and elevations. */
+.button {font-size: 14px; min-height: 42px; padding: 10px 16px; border-radius: 9px; background: var(--panel-fill); border-color: var(--border); transition: background .18s, border-color .18s, box-shadow .18s}
+.button:hover {border-color: color-mix(in srgb, var(--cyan) 48%, var(--border)); background: var(--raised); box-shadow: 0 3px 12px #0000000e}
+.button.primary {color: #052b29; background: linear-gradient(115deg, #8cefd6, #6bdde1); border-color: #9deee6; box-shadow: 0 4px 18px #68e8d015, inset 0 1px 0 #ffffff55; font-weight: 650}
+.button.primary:hover {background: linear-gradient(115deg, #acf8e4, #8eeaf0); border-color: #b9fff0; box-shadow: 0 4px 24px #68e8d025}
+.button:disabled {box-shadow: none; cursor: default}
+.button.small, .page-actions>.button {font-size: 13px; min-height: 36px}
+.icon-button {color: var(--faint)}
+input, select, textarea {font-size: 14px; border-color: var(--border); background: var(--code); color: var(--text)}
+.search-field:focus-within, input:focus-visible, select:focus-visible, textarea:focus-visible {border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft)}
+.search-field:focus-within input {box-shadow: none; outline: none}
+.segmented {background: var(--code); border-color: var(--border); border-radius: 9px}
+.segmented button {font-size: 13px; font-weight: 500}
+.workspace-panel, .task-browser, .task-resume, .settings-card, .modal {background: var(--panel-fill); box-shadow: var(--panel-shadow); border-color: var(--border)}
+.modal {box-shadow: var(--shadow)}
+.modal-header {background: var(--panel-fill)}
+.modal-header h2 {font-size: 24px}
+.modal-body>p, .knowledge-field p {font-size: 15px; line-height: 1.85}
+.modal-backdrop {background: #030914bd; backdrop-filter: blur(8px)}
+.field-label {font-size: 14px}
+.case-option {border-color: var(--border-soft); padding: 15px 16px}
+.case-option-text strong {font-size: 15px}
+.case-option-text p {font-size: 13px}
+.notice, .experiment-options>summary, .case-pager {font-size: 13px}
+
+/* Workflow navigation reads as one connected instrument panel. */
+.workspace-navigation {background: var(--surface); box-shadow: 0 8px 24px #02050b26}
+.workspace-heading {padding: 20px 24px; background: linear-gradient(110deg, var(--frame-glow), transparent 65%), var(--surface)}
+.workspace-identity .case-title h1, .workspace-identity .case-number {font-size: 22px; font-weight: 650; letter-spacing: -.035em}
+.workspace-identity .case-sub {font-size: 13px; margin-top: 8px}
+.workspace-actions>.button, .task-actions>summary {font-size: 13px; min-height: 42px}
+.workspace-status {padding: 11px 24px; background: var(--code); border-bottom-color: var(--border-soft)}
+.workspace-status .stage-copy strong, .workspace-status .stage-copy p {font-size: 13px; line-height: 1.7}
+.workspace-status .stage-copy p {color: var(--faint)}
+.workspace-status-label, .runtime-history>summary {font-size: 12px}
+.focused-workspace>.pipeline, .workspace-navigation>.pipeline {display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 8px 16px 0; gap: 8px; background: var(--surface)}
+.focused-workspace .pipeline button {justify-content: center; min-width: 0; gap: 10px; font-size: 14px; font-weight: 550; padding: 15px 8px 17px; border-radius: 9px 9px 0 0; transition: color .18s, background .18s}
+.focused-workspace .pipeline button:hover {background: var(--code); color: var(--text)}
+.focused-workspace .pipeline button.active {background: linear-gradient(180deg, var(--accent-soft), transparent); color: var(--accent)}
+.focused-workspace .pipeline button.active:after {height: 3px; background: var(--accent-line); box-shadow: 0 -3px 12px #68e8d018}
+.focused-workspace .pipeline .step-number {width: 28px; height: 28px; border-radius: 8px; font-size: 12px}
+.focused-workspace .pipeline .step-state-label {font-size: 12px; margin-left: 6px}
+.workspace-activity {font-size: 13px; padding: 14px 24px}
+.workspace-activity .activity-status strong, .activity-recent, .activity-details .activity-event {font-size: 13px}
+.activity-details>summary, .activity-details .activity-event>time, .workspace-activity .activity-status>time {font-size: 12px}
+.presentation-banner {font-size: 13px; background: linear-gradient(90deg, var(--accent-soft), transparent); padding: 10px 24px}
+.presentation-banner strong, .presentation-banner .presentation-time, .presentation-controls .button {font-size: 12px}
+
+/* Knowledge cards: a visible header, readable abstract and quiet technical edge. */
+.filters {padding: 16px; background: var(--panel-fill); border: 1px solid var(--border); border-radius: 13px; margin-bottom: 24px; box-shadow: var(--panel-shadow)}
+.filters .search-field {background: var(--code); max-width: 560px; min-height: 46px}
+.filter-note {font-size: 11px; letter-spacing: .06em; color: var(--faint)}
+.knowledge-grid {gap: 20px}
+.kb-card {position: relative; padding: 24px; background: var(--panel-fill); border-color: var(--border); border-radius: 14px; box-shadow: var(--panel-shadow); transition: border-color .2s, transform .2s, box-shadow .2s}
+.kb-card:before {content: ''; position: absolute; top: -1px; left: 24px; width: 56px; height: 2px; background: var(--accent-line); border-radius: 2px; opacity: .65}
+.kb-card:hover {border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); transform: translateY(-3px); box-shadow: 0 12px 32px #01050e33, inset 0 1px 0 #b2f8ed12}
+.kb-card-head {margin-bottom: 22px; align-items: center}
+.kb-card-head>.icon {box-sizing: content-box; width: 20px; height: 20px; padding: 10px; color: var(--accent); background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 19%, var(--border-soft)); border-radius: 10px}
+.kb-card h3 {font-size: 18px; font-weight: 600; letter-spacing: -.02em; margin-bottom: 6px}
+.kb-project {font-size: 13px; font-weight: 400; color: var(--faint); margin-bottom: 18px}
+.kb-description {font-size: 15px; font-weight: 400; line-height: 1.8; color: var(--muted); -webkit-line-clamp: 4}
+.kb-card-footer {margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border-soft); gap: 7px}
+.kb-card-footer>.icon {color: var(--faint); transition: transform .2s, color .2s}
+.kb-card:hover .kb-card-footer>.icon {transform: translateX(3px); color: var(--accent)}
+.pagination {font-size: 13px; font-variant-numeric: tabular-nums}
+
+/* Task centre and settings use the same hierarchy as the repair workspace. */
+.task-center-summary {gap: 16px}
+.task-summary-item {position: relative; padding: 21px 22px; background: var(--panel-fill); border-color: var(--border); box-shadow: var(--panel-shadow)}
+.task-summary-item:after {content: ''; position: absolute; top: 19px; right: 18px; width: 16px; height: 16px; border-top: 1px solid var(--border); border-right: 1px solid var(--border); pointer-events: none}
+.task-summary-item:hover, .task-summary-item.active {background: linear-gradient(120deg, var(--accent-soft), transparent), var(--surface); border-color: color-mix(in srgb, var(--accent) 50%, var(--border))}
+.task-summary-item>span {font-size: 13px}
+.task-summary-item strong {font-size: 34px; font-weight: 550; line-height: 1.3; margin-top: 14px; letter-spacing: -.05em}
+.task-browser-heading {padding: 21px 22px 12px}
+.task-browser-heading h2 {font-size: 18px}
+.task-filter-tab {font-size: 13px; min-height: 36px; padding: 7px 10px}
+.task-filter-tab span {font-size: 12px; padding: 1px 5px}
+.task-filter-bar {padding-left: 22px; padding-right: 22px}
+.task-search-row .search-field {height: 42px; min-height: 42px}
+.task-search-row input, .task-browser .button.small {font-size: 13px}
+.task-result-caption, .task-case-header p, .task-case-count {font-size: 12px}
+.task-case-header {padding: 16px 22px 13px; background: var(--code)}
+.task-case-header h3 {font-size: 14px; font-weight: 600}
+.task-record {padding: 18px 22px; transition: background .18s}
+.task-record:hover {background: color-mix(in srgb, var(--raised) 45%, transparent)}
+.task-record-title>strong {font-size: 14px; font-weight: 550}
+.task-record-title .pill, .task-record-meta, .task-record-meta .mono {font-size: 12px}
+.task-record-actions .button.small {font-size: 12px; min-height: 35px; padding: 7px 10px}
+.task-resume {padding: 23px; background: linear-gradient(140deg, var(--accent-soft), transparent 45%), var(--surface)}
+.task-resume h2 {font-size: 21px; margin-top: 24px}
+.task-resume>p {font-size: 14px; line-height: 1.85}
+.task-resume .label, .task-resume-top .pill, .task-resume-detail, .task-resume-presentation>span, .task-pagination>span {font-size: 12px}
+.task-resume>.button, .task-resume-presentation .button {font-size: 13px}
+.task-center-resources, .task-center-resources .button {font-size: 12px}
+.settings-card {padding: 28px; position: relative}
+.settings-card h3 {font-size: 19px; margin-bottom: 26px}
+.settings-card h3>.icon {color: var(--accent)}
+.setting-row {font-size: 14px; padding: 13px 0; margin: 0; border-bottom: 1px solid var(--border-soft)}
+.setting-row strong {font-size: 14px; font-weight: 500; text-align: right}
+.settings-card p, .status-row {font-size: 14px; line-height: 1.9}
+
+/* Diagnosis: long-form text, structural facts and source have distinct scales. */
+.dr-heading h2, .dr-evidence-heading h2 {font-size: 21px; letter-spacing: -.025em}
+.dr-eyebrow, .validation-eyebrow {font-size: 11px; letter-spacing: 1.5px; color: var(--faint)}
+.dr-report-layout, .dr-workspace {border-color: var(--border); box-shadow: var(--panel-shadow)}
+.dr-report-layout {border-top: 2px solid color-mix(in srgb, var(--accent) 60%, var(--border)); background: var(--code)}
+.dr-conclusion {padding: 28px 30px}
+.dr-section-title h3 {font-size: 15px; font-weight: 600}
+.dr-section-title>span {font-size: 12px}
+.dr-conclusion-text {font: 400 16px/1.9 var(--sans); color: var(--text); letter-spacing: 0}
+.dr-conclusion-text>p+p {margin-top: 20px}
+.dr-conclusion-text code {font-size: 13px; padding: 3px 6px}
+.dr-report-context {background: var(--panel-fill); padding: 28px 22px}
+.dr-report-context h3, .dr-stat-grid dt {font-size: 12px}
+.dr-stat-grid dd {font-size: 29px; font-weight: 550; letter-spacing: -.035em}
+.dr-keywords .pill {font-size: 12px; padding: 4px 8px; line-height: 1.7}
+.dr-report-notes {font-size: 14px}
+.dr-report-notes summary, .dr-report-notes code {font-size: 12px}
+.dr-evidence-heading>span {font-size: 12px}
+.dr-source-toolbar, .dr-tabs {background: var(--surface); min-height: 56px}
+.dr-file {font-size: 13px}
+.dr-source-controls .button, .dr-line-jump>input, .dr-line-jump>label {font-size: 12px; min-height: 32px; height: 32px}
+.dr-line-jump>label {display: flex; align-items: center}
+.dr-source .code-line {font-size: 13px; line-height: 27px; min-height: 27px}
+.dr-source .line-number {font-size: 12px; line-height: 27px}
+.line-code {color: var(--text)}
+.tok-comment {color: var(--faint); font-style: normal}
+.tok-keyword {color: var(--purple)}
+.tok-string {color: #a0dbbc}
+.tok-call {color: var(--cyan)}
+.tok-number {color: var(--amber)}
+.dr-source-meta, .dr-source-meta .button {font-size: 12px}
+.dr-source-meta .button {min-height: 30px; height: 30px}
+.dr-tabs>button {font-size: 14px; font-weight: 500}
+.dr-tabs>button>span {font-size: 12px; padding: 2px 5px}
+.dr-search>input {font-size: 13px; height: 38px; min-height: 38px}
+.dr-filter-label>select {font-family: var(--sans); font-size: 12px; height: 40px}
+.dr-fact-count, .dr-fact-count>span, .dr-group-heading {font-size: 12px}
+.dr-fact {padding: 16px; border-radius: 10px; background: var(--code)}
+.dr-fact+.dr-fact {margin-top: 10px}
+.dr-fact-meta {font-size: 12px; font-family: var(--sans)}
+.dr-fact>p {font-size: 14px; font-weight: 400; line-height: 1.85; margin-top: 9px; color: var(--muted)}
+.dr-tool>summary>strong, .dr-tool-number {font-size: 12px}
+.dr-tool-label, .dr-tool-status>div, .dr-tool-status dd, .dr-tool-body>.button, .dr-tool-label .button {font-size: 12px}
+.dr-tool-arguments {font-size: 12px; line-height: 1.85}
+.dr-empty h3 {font-size: 16px}
+.dr-empty p {font-size: 14px}
+
+/* Retrieval keeps the two views easy to distinguish, without colouring prose. */
+.retrieval-heading h3 {font-size: 22px}
+.retrieval-caption, .retrieval-quicknav p {font-size: 13px}
+.retrieval-journey {padding: 22px; background: linear-gradient(105deg, var(--accent-soft), var(--frame-glow)), var(--code); border-color: var(--border)}
+.retrieval-journey strong {font-size: 14px}
+.retrieval-journey small {font-size: 12px; color: var(--faint)}
+.retrieval-journey b {font-size: 30px; letter-spacing: -.04em}
+.retrieval-quicknav button, .retrieval-query summary, .retrieval-context summary {font-size: 13px}
+.retrieval-section-title h3 {font-size: 17px}
+.retrieval-section-title>span:last-child {font-size: 12px}
+.retrieval-lane {background: var(--code); box-shadow: var(--panel-shadow); border-radius: 12px}
+.retrieval-lane header {padding: 20px 18px; background: var(--panel-fill)}
+.retrieval-overline {font-size: 17px; font-weight: 600}
+.retrieval-lane header h3, .retrieval-lane-count {font-size: 13px}
+.retrieval-lane-icon {width: 38px; height: 38px; border-radius: 10px}
+.retrieval-row {padding: 17px 15px; gap: 11px; min-height: 132px}
+.retrieval-row-title strong {font-size: 14px}
+.retrieval-rank {font-size: 12px; color: var(--faint)}
+.retrieval-project, .retrieval-row-summary {font-size: 13px; font-weight: 400; line-height: 1.8}
+.retrieval-row-summary {margin-top: 8px}
+.retrieval-row-meta, .retrieval-row-score, .retrieval-row-score b, .retrieval-shared, .retrieval-chosen, .retrieval-open {font-size: 12px}
+.retrieval-row-meta>span {opacity: 1}
+.retrieval-merge {background: linear-gradient(100deg, var(--accent-soft), var(--frame-glow)), var(--surface); padding: 24px; border-color: var(--border)}
+.retrieval-merge h3 {font-size: 17px}
+.retrieval-merge p {font-size: 14px}
+.retrieval-merge .retrieval-formula {font-size: 12px}
+.retrieval-final-card {padding: 23px; background: var(--panel-fill); box-shadow: var(--panel-shadow); border-radius: 12px}
+.retrieval-final-card h4 {font-size: 18px}
+.retrieval-final-top, .retrieval-final-top b, .retrieval-source, .retrieval-final-scores, .retrieval-final-scores b {font-size: 12px}
+.retrieval-final-description {font-size: 14px; line-height: 1.85}
+.retrieval-drawer {background: var(--surface); box-shadow: var(--shadow)}
+.retrieval-drawer-heading {background: var(--panel-fill)}
+.retrieval-drawer-heading .label, .retrieval-drawer-meta .pill, .retrieval-drawer-scores dt, .retrieval-origin-list>button, .retrieval-drawer .knowledge-field>strong, .retrieval-drawer-foot {font-size: 12px}
+.retrieval-drawer-tabs>button, .retrieval-drawer h4 {font-size: 14px}
+.retrieval-drawer .knowledge-field p, .retrieval-description p {font-size: 14px; line-height: 1.85}
+.retrieval-drawer .diff-line, .retrieval-source-code {font-size: 13px}
+
+/* Patch and verification panels use a terminal treatment only for actual logs. */
+.review-diff-toolbar {background: var(--panel-fill); padding: 20px 22px}
+.review-change-stats, .review-change-stats strong, .review-diff-options .segmented button, .review-diff-options .button.small {font-size: 13px}
+.review-file-head {font-size: 13px; padding-top: 16px; padding-bottom: 16px}
+.review-file-head small, .review-hunk-head, .review-hunk-head small, .review-split-head {font-size: 12px}
+.review-diff-row, .review-split-row {font-size: 13px; line-height: 28px; min-height: 28px}
+.review-line-number {font-size: 12px; line-height: 28px}
+.review-result-aside {padding: 26px 22px; background: var(--panel-fill)}
+.review-result-aside h3 {font-size: 16px}
+.review-explanation {font-size: 14px; line-height: 1.9}
+.review-aside-label, .review-hint, .review-compact-stages .pill {font-size: 12px}
+.review-compact-stages>div, .review-text-button, .review-output summary {font-size: 13px}
+.review-output pre, .review-run-error pre {font-size: 12px}
+.validation-overview {position: relative; overflow: hidden; background: radial-gradient(ellipse at 95% 0, var(--frame-glow), transparent 65%), var(--code); box-shadow: var(--panel-shadow); padding: 28px}
+.validation-overview:before {content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent)}
+.validation-overview-symbol {width: 52px; height: 52px; border-radius: 15px; border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); box-shadow: inset 0 1px 0 #b2f8ed12, 0 0 22px #68e8d008}
+.validation-overview h2 {font-size: 24px; letter-spacing: -.03em}
+.validation-overview p {font-size: 14px; line-height: 1.85}
+.validation-overview-metrics strong {font-size: 30px; letter-spacing: -.04em}
+.validation-overview-metrics span {font-size: 12px}
+.validation-progress-caption {font-size: 12px; margin-top: 24px}
+.validation-progress-track {gap: 7px; margin-bottom: 28px}
+.validation-progress-track>span {height: 5px}
+.validation-progress-track>.passed {background: var(--accent-line)}
+.validation-workspace {box-shadow: var(--panel-shadow)}
+.validation-timeline {background: var(--panel-fill)}
+.validation-timeline h3 {font-size: 14px}
+.validation-timeline .validation-follow {font-size: 12px; height: 32px; min-height: 32px}
+.validation-step {padding-top: 17px; padding-bottom: 17px}
+.validation-step.selected {background: linear-gradient(110deg, var(--accent-soft), transparent), var(--code); border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); box-shadow: inset 2px 0 0 var(--accent)}
+.validation-step-copy>strong {font-size: 14px; font-weight: 550}
+.validation-step-copy>small, .validation-step-status time, .validation-step-status .pill {font-size: 12px}
+.validation-step-status {flex-wrap: wrap; gap: 8px}
+.validation-step-marker {font-size: 12px}
+.validation-stage-title h3 {font-size: 22px}
+.validation-stage-title>.pill, .validation-stage-facts dt {font-size: 12px}
+.validation-stage-description {font-size: 14px; line-height: 1.85}
+.validation-stage-facts dd {font-size: 13px}
+.validation-shared {font-size: 13px}
+.validation-console {background: var(--code); border-radius: 10px; box-shadow: inset 0 1px 8px #00000012}
+.validation-console>header {background: var(--surface); font-size: 13px; padding: 14px 16px}
+.validation-console>header>span, .validation-console-stream h4 {font-size: 12px}
+.validation-console-stream {padding: 18px}
+.validation-console-stream pre {font-size: 13px; line-height: 1.9; color: var(--muted)}
+.validation-console-empty strong {font-size: 14px}
+.validation-console-empty p {font-size: 13px}
+.validation-preparations b, .validation-preparations small {font-size: 12px}
+
+/* Keep contrast and status colours in the light theme as well. */
+[data-theme="light"] .brand-logo {color: #062825}
+[data-theme="light"] .button.primary {color: #fff; background: linear-gradient(115deg, #087f72, #176b91); border-color: #087f72; box-shadow: 0 4px 14px #087f7218}
+[data-theme="light"] .button.primary:hover {background: linear-gradient(115deg, #066c61, #115978); border-color: #066c61}
+[data-theme="light"] .tok-string {color: #296a46}
+[data-theme="light"] .tok-comment {color: var(--faint)}
+[data-theme="light"] .line-code {color: var(--text)}
+[data-theme="light"] .kb-card:hover {box-shadow: 0 10px 28px #203e5f12}
+[data-theme="light"] .modal-backdrop {background: #1b2e4670}
+
+@media (min-width: 1700px) {
+  .main .content {padding: 32px 36px}
+  .main.workbench-mode .content {padding: 26px 32px 32px}
+  .dr-conclusion {padding: 32px 36px}
+}
+@media (max-width: 1250px) {
+  .focused-workspace .pipeline .step-state-label {display: none}
+  .dr-source-toolbar {flex-wrap: wrap}
+  .dr-source-controls {margin-left: auto}
+  .dr-line-jump>label {display: none}
+  .validation-overview-metrics {margin-left: 70px}
+}
+@media (max-width: 1100px) {
+  .shell {grid-template-columns: 80px minmax(0, 1fr)}
+  .sidebar {width: 80px; padding: 24px 12px}
+  .brand {padding: 0 8px 26px}
+  .brand-logo {width: 36px; height: 36px; flex-shrink: 0}
+  .nav-button {padding: 14px 0; justify-content: center}
+  .nav-button.active:before {left: 0}
+  .main .content, .main.workbench-mode .content {padding: 22px}
+  .main .topbar {padding: 0 22px}
+  .filters {flex-wrap: wrap}
+  .filters .search-field {min-width: 180px; flex: 1}
+  .filter-note {font-size: 11px}
+  .dr-report-context {padding: 22px}
+  .dr-conclusion {padding: 25px}
+  .task-center-summary {gap: 12px}
+  .task-summary-item {padding: 18px}
+}
+@media (max-width: 800px) {
+  .validation-overview {padding: 22px}
+  .validation-overview h2 {font-size: 21px}
+  .validation-stage-view {padding: 22px}
+  .validation-timeline ol {grid-template-columns: repeat(5, 195px)}
+  .validation-step {padding: 14px}
+  .review-diff-row, .review-split-row {font-size: 12px}
+  .review-line-number {font-size: 11px}
+}
+@media (max-width: 680px) {
+  .shell {display: block}
+  .sidebar {inset: auto 0 0; height: 68px; width: 100%; padding: 8px 12px; background: var(--sidebar); border-top: 1px solid var(--border)}
+  .nav-button {width: 48px; min-height: 48px; padding: 13px; margin: 0}
+  .nav-button.active:before {top: -8px; left: 12px; right: 12px; width: auto; height: 2px; transform: none}
+  .main .topbar {height: 52px; padding: 0 16px}
+  .main .content {padding: 18px 14px}
+  .main.workbench-mode .content {padding: 12px 8px 20px}
+  .main .breadcrumb {font-size: 12px}
+  .workspace-heading {padding: 17px 14px; gap: 14px}
+  .workspace-identity .case-title h1, .workspace-identity .case-number {font-size: 20px}
+  .workspace-identity .case-sub {font-size: 12px}
+  .workspace-identity .case-title .pill {font-size: 12px}
+  .workspace-actions>.button, .task-actions>summary {font-size: 13px; min-height: 40px}
+  .workspace-status {padding: 11px 14px}
+  .workspace-status .stage-copy strong, .workspace-status .stage-copy p {font-size: 12px}
+  .focused-workspace>.pipeline, .workspace-navigation>.pipeline {padding: 6px 6px 0; gap: 3px}
+  .focused-workspace .pipeline button {font-size: 12px; padding: 13px 2px 15px; gap: 5px}
+  .focused-workspace .pipeline .step-number {width: 21px; height: 21px; border-radius: 6px}
+  .workspace-activity {padding: 14px}
+  .workspace-activity .activity-status strong, .activity-recent {font-size: 12px}
+  .presentation-banner {padding: 10px 14px}
+  .filters {padding: 12px; gap: 10px; margin-bottom: 18px}
+  .filters .search-field {min-width: 0; width: 100%; flex-basis: 100%; min-height: 44px}
+  .filter-note {margin-left: auto; font-size: 10px; letter-spacing: 0}
+  .knowledge-grid {gap: 16px}
+  .kb-card {padding: 22px}
+  .kb-card h3 {font-size: 18px}
+  .kb-description {font-size: 15px}
+  .task-center-summary {gap: 10px}
+  .task-summary-item {padding: 17px 15px}
+  .task-summary-item strong {font-size: 30px; margin-top: 10px}
+  .task-summary-item>span {font-size: 13px}
+  .task-summary-item:after {width: 10px; height: 10px; right: 12px; top: 12px}
+  .task-browser-heading {padding: 18px 15px 12px}
+  .task-filter-bar {padding-left: 14px; padding-right: 14px}
+  .task-filter-tab, .task-history-page .task-filter-tab {font-size: 12px; padding: 6px 8px; gap: 5px}
+  .task-filter-tab span {font-size: 11px}
+  .task-case-header, .task-record {padding: 16px}
+  .task-record-title>strong {font-size: 14px}
+  .task-record-meta, .task-record-meta .mono {font-size: 12px}
+  .task-resume {padding: 22px}
+  .settings-card {padding: 22px}
+  .setting-row {gap: 12px}
+  .setting-row strong {max-width: 64%}
+  .diagnosis-review {padding: 20px 12px}
+  .dr-heading h2, .dr-evidence-heading h2 {font-size: 19px}
+  .dr-heading>.button {font-size: 12px; min-height: 36px; height: auto; padding: 7px 10px}
+  .dr-conclusion {padding: 22px 18px}
+  .dr-conclusion-text {font-size: 15px; line-height: 1.9}
+  .dr-report-context {padding: 20px 16px}
+  .dr-stat-grid {gap: 12px}
+  .dr-stat-grid dd {font-size: 26px}
+  .dr-stat-grid dt {font-size: 12px}
+  .dr-file {font-size: 12px}
+  .dr-source-controls {gap: 6px; flex-wrap: wrap}
+  .dr-source-controls .button {font-size: 12px; padding: 0 7px}
+  .dr-source .code-line {font-size: 12px; line-height: 26px; min-height: 26px}
+  .dr-source .line-number {font-size: 11px; line-height: 26px}
+  .dr-source-meta {font-size: 11px; gap: 8px}
+  .dr-tabs>button {font-size: 14px}
+  .dr-fact {padding: 14px}
+  .dr-filter-label {flex-basis: 132px}
+  .dr-fact-count {flex-wrap: wrap; gap: 3px}
+  .retrieval-workspace {padding: 20px 12px}
+  .retrieval-journey {padding: 18px}
+  .retrieval-row {padding: 16px 12px; flex-wrap: wrap; gap: 8px}
+  .retrieval-row-copy {width: calc(100% - 28px); flex: initial}
+  .retrieval-row-score {flex-direction: row; align-items: center; justify-content: space-between; width: calc(100% - 28px); margin-left: 28px}
+  .retrieval-workspace.has-retrieval-review .retrieval-row {flex-wrap: wrap}
+  .retrieval-workspace.has-retrieval-review .retrieval-row-copy {width: calc(100% - 28px); flex: initial}
+  .retrieval-workspace.has-retrieval-review .retrieval-row-score {width: calc(100% - 28px); margin-left: 28px; flex-direction: row; align-items: center}
+  .retrieval-final-card {padding: 21px}
+  .validation-workbench {padding: 18px 12px}
+  .validation-overview {padding: 20px 17px; gap: 12px}
+  .validation-overview-symbol {width: 38px; height: 38px; border-radius: 11px}
+  .validation-overview h2 {font-size: 20px}
+  .validation-overview p {font-size: 13px}
+  .validation-overview-metrics {margin-left: 50px; gap: 18px}
+  .validation-overview-metrics strong {font-size: 26px}
+  .validation-stage-view {padding: 22px 16px}
+  .validation-stage-title h3 {font-size: 21px}
+  .validation-stage-facts {gap: 14px}
+  .validation-console>header {flex-wrap: wrap; padding: 12px}
+  .validation-console-stream {padding: 14px}
+  .validation-console-stream pre {font-size: 12px}
+  .review-file-head {font-size: 12px}
+  .review-result-aside {padding: 22px 18px}
+  .modal-header {padding: 22px 20px}
+  .modal-header h2 {font-size: 22px}
+  .modal-body {padding: 22px 20px}
+}
+
+/* Only real running indicators animate. Static data has no idle motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after {animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important}
+  .kb-card:hover, .kb-card:hover .kb-card-footer>.icon {transform: none}
+}

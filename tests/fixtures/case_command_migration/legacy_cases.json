@@ -1,0 +1,255 @@
+[
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2010-2481",
+    "source_file": "libtiff/tif_dirread.c",
+    "record": {
+      "source_file": "libtiff/tif_dirread.c",
+      "programming_language": "c",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2010-2481\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2010-2481\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2010-2481\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2010-2481\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\ncd $1\n\n./configure\nmake CFLAGS=\"-static -g\" CXXFLAGS=\"-static -g\" -j32\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check -j32)\n\ntotal1=$(echo \"$output1\" | grep -oP '# TOTAL: \\K\\d+')\npass1=$(echo \"$output1\" | grep -oP '# PASS:  \\K\\d+')\nskip1=$(echo \"$output1\" | grep -oP '# SKIP:  \\K\\d+')\nxfail1=$(echo \"$output1\" | grep -oP '# XFAIL: \\K\\d+')\nfail1=$(echo \"$output1\" | grep -oP '# FAIL:  \\K\\d+')\nxpass1=$(echo \"$output1\" | grep -oP '# XPASS: \\K\\d+')\nerror1=$(echo \"$output1\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total1\"\necho \"PASS:  $pass1\"\necho \"SKIP:  $skip1\"\necho \"XFAIL: $xfail1\"\necho \"FAIL:  $fail1\"\necho \"XPASS: $xpass1\"\necho \"ERROR: $error1\"\n\nmake clean\n\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\n./configure\nmake CFLAGS=\"-static -g\" CXXFLAGS=\"-static -g\" -j32\nif [ $? -ne 0 ]; then\n    make clean\n    for ((i=0; i<=$count; i++)); do\n        mv ./copy${i}.c ${buggy_paths[$i]}\n    done\n    exit 2\nfi\noutput2=$(make check -j32)\n\ntotal2=$(echo \"$output2\" | grep -oP '# TOTAL: \\K\\d+')\npass2=$(echo \"$output2\" | grep -oP '# PASS:  \\K\\d+')\nskip2=$(echo \"$output2\" | grep -oP '# SKIP:  \\K\\d+')\nxfail2=$(echo \"$output2\" | grep -oP '# XFAIL: \\K\\d+')\nfail2=$(echo \"$output2\" | grep -oP '# FAIL:  \\K\\d+')\nxpass2=$(echo \"$output2\" | grep -oP '# XPASS: \\K\\d+')\nerror2=$(echo \"$output2\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total2\"\necho \"PASS:  $pass2\"\necho \"SKIP:  $skip2\"\necho \"XFAIL: $xfail2\"\necho \"FAIL:  $fail2\"\necho \"XPASS: $xpass2\"\necho \"ERROR: $error2\"\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\n\nmake clean\n\nif [ \"$total1\" != \"$total2\" ] || [ \"$pass1\" != \"$pass2\" ] || [ \"$skip1\" != \"$skip2\" ] || [ \"$xfail1\" != \"$xfail2\" ] || [ \"$fail1\" != \"$fail2\" ] || [ \"$xpass1\" != \"$xpass2\" ] || [ \"$error1\" != \"$error2\" ];\nthen\n    exit 1\nelse\n    exit 0\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/libtiff/tif_dirread.c\" \"$PROJECT_DIR/source/libtiff/tif_dirread.c\""
+    }
+  },
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2016-1838",
+    "source_file": "parser.c",
+    "record": {
+      "source_file": "parser.c",
+      "programming_language": "c",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2016-1838\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2016-1838\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2016-1838\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2016-1838\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\ncd $1\n\n./autogen.sh\nmake CFLAGS=\"-static -g\" CXXFLAGS=\"-static -g\" -j32\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check -j32)\necho $output1 > ../tmp1.txt\n\nmake clean\n\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\n./autogen.sh\nmake CFLAGS=\"-static -g\" CXXFLAGS=\"-static -g\" -j32\n\nif [ $? -ne 0 ]; then\n    make clean\n    for ((i=0; i<=$count; i++)); do\n        mv ./copy${i}.c ${buggy_paths[$i]}\n    done\n    exit 2\nfi\noutput2=$(make check -j32)\necho $output2 > ../tmp2.txt\n\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\n\nmake clean\n\nif diff -q ../tmp1.txt ../tmp2.txt >/dev/null; then\n    rm -rf ../tmp1.txt ../tmp2.txt\n    exit 0\nelse\n    rm -rf ../tmp1.txt ../tmp2.txt\n    exit 1\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/parser.c\" \"$PROJECT_DIR/source/parser.c\""
+    }
+  },
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2016-10349",
+    "source_file": "libarchive/archive_read_support_format_cab.c",
+    "record": {
+      "source_file": "libarchive/archive_read_support_format_cab.c",
+      "programming_language": "c",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2016-10349\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2016-10349\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2016-10349\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2016-10349\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\n\ncd $1\n\n./build/autogen.sh\n\nCC=clang CXX=clang++ ./configure --without-openssl\nmake CFLAGS=\"-Wno-error -static -ggdb\" CXXFLAGS=\"-Wno-error -static -ggdb\" LDFLAGS=\"-Wno-error\" -j32\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check CFLAGS=\"-Wno-error -static -ggdb\" CXXFLAGS=\"-Wno-error -static -ggdb\" LDFLAGS=\"-Wno-error\" -j32)\n\ntotal1=$(echo \"$output1\" | grep -oP '# TOTAL: \\K\\d+')\npass1=$(echo \"$output1\" | grep -oP '# PASS:  \\K\\d+')\nskip1=$(echo \"$output1\" | grep -oP '# SKIP:  \\K\\d+')\nxfail1=$(echo \"$output1\" | grep -oP '# XFAIL: \\K\\d+')\nfail1=$(echo \"$output1\" | grep -oP '# FAIL:  \\K\\d+')\nxpass1=$(echo \"$output1\" | grep -oP '# XPASS: \\K\\d+')\nerror1=$(echo \"$output1\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total1\"\necho \"PASS:  $pass1\"\necho \"SKIP:  $skip1\"\necho \"XFAIL: $xfail1\"\necho \"FAIL:  $fail1\"\necho \"XPASS: $xpass1\"\necho \"ERROR: $error1\"\n\nmake clean\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\n./build/autogen.sh\n\nCC=clang CXX=clang++ ./configure --without-openssl\nmake CFLAGS=\"-Wno-error -static -ggdb\" CXXFLAGS=\"-Wno-error -static -ggdb\" LDFLAGS=\"-Wno-error\" -j32\nif [ $? -ne 0 ]; then\n    make clean\n    mv ./copy.c $3\n    exit 2\nfi\noutput2=$(make check CFLAGS=\"-Wno-error -static -ggdb\" CXXFLAGS=\"-Wno-error -static -ggdb\" LDFLAGS=\"-Wno-error\" -j32)\n\ntotal2=$(echo \"$output2\" | grep -oP '# TOTAL: \\K\\d+')\npass2=$(echo \"$output2\" | grep -oP '# PASS:  \\K\\d+')\nskip2=$(echo \"$output2\" | grep -oP '# SKIP:  \\K\\d+')\nxfail2=$(echo \"$output2\" | grep -oP '# XFAIL: \\K\\d+')\nfail2=$(echo \"$output2\" | grep -oP '# FAIL:  \\K\\d+')\nxpass2=$(echo \"$output2\" | grep -oP '# XPASS: \\K\\d+')\nerror2=$(echo \"$output2\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total2\"\necho \"PASS:  $pass2\"\necho \"SKIP:  $skip2\"\necho \"XFAIL: $xfail2\"\necho \"FAIL:  $fail2\"\necho \"XPASS: $xpass2\"\necho \"ERROR: $error2\"\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\nmake clean\n\nif [ \"$total1\" != \"$total2\" ] || [ \"$pass1\" != \"$pass2\" ] || [ \"$skip1\" != \"$skip2\" ] || [ \"$xfail1\" != \"$xfail2\" ] || [ \"$fail1\" != \"$fail2\" ] || [ \"$xpass1\" != \"$xpass2\" ] || [ \"$error1\" != \"$error2\" ];\nthen\n    exit 1\nelse\n    exit 0\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/libarchive/archive_read_support_format_cab.c\" \"$PROJECT_DIR/source/libarchive/archive_read_support_format_cab.c\""
+    }
+  },
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2017-12858",
+    "source_file": "lib/zip_dirent.c",
+    "record": {
+      "source_file": "lib/zip_dirent.c",
+      "programming_language": "c",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-12858\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2017-12858\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-12858\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2017-12858\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\n\ncd $1\n\naclocal\nautoheader\nautoconf\nlibtoolize --automake --copy --debug --force\nautomake --add-missing\n./configure\nmake CFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" CXXFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" LDFLAGS=\"-fno-omit-frame-pointer\" -j32\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check -j32)\n\n\ntotal1=$(echo \"$output1\" | grep -oP '# TOTAL: \\K\\d+')\npass1=$(echo \"$output1\" | grep -oP '# PASS:  \\K\\d+')\nskip1=$(echo \"$output1\" | grep -oP '# SKIP:  \\K\\d+')\nxfail1=$(echo \"$output1\" | grep -oP '# XFAIL: \\K\\d+')\nfail1=$(echo \"$output1\" | grep -oP '# FAIL:  \\K\\d+')\nxpass1=$(echo \"$output1\" | grep -oP '# XPASS: \\K\\d+')\nerror1=$(echo \"$output1\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total1\"\necho \"PASS:  $pass1\"\necho \"SKIP:  $skip1\"\necho \"XFAIL: $xfail1\"\necho \"FAIL:  $fail1\"\necho \"XPASS: $xpass1\"\necho \"ERROR: $error1\"\n\nmake clean\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\naclocal\nautoheader\nautoconf\nlibtoolize --automake --copy --debug --force\nautomake --add-missing\n./configure\nmake CFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" CXXFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" LDFLAGS=\"-fno-omit-frame-pointer\" -j32\nif [ $? -ne 0 ]; then\n    make clean\n    mv ./copy.c $3\n    exit 2\nfi\noutput2=$(make check -j32)\n\ntotal2=$(echo \"$output2\" | grep -oP '# TOTAL: \\K\\d+')\npass2=$(echo \"$output2\" | grep -oP '# PASS:  \\K\\d+')\nskip2=$(echo \"$output2\" | grep -oP '# SKIP:  \\K\\d+')\nxfail2=$(echo \"$output2\" | grep -oP '# XFAIL: \\K\\d+')\nfail2=$(echo \"$output2\" | grep -oP '# FAIL:  \\K\\d+')\nxpass2=$(echo \"$output2\" | grep -oP '# XPASS: \\K\\d+')\nerror2=$(echo \"$output2\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total2\"\necho \"PASS:  $pass2\"\necho \"SKIP:  $skip2\"\necho \"XFAIL: $xfail2\"\necho \"FAIL:  $fail2\"\necho \"XPASS: $xpass2\"\necho \"ERROR: $error2\"\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\nmake clean\n\nif [ \"$total1\" != \"$total2\" ] || [ \"$pass1\" != \"$pass2\" ] || [ \"$skip1\" != \"$skip2\" ] || [ \"$xfail1\" != \"$xfail2\" ] || [ \"$fail1\" != \"$fail2\" ] || [ \"$xpass1\" != \"$xpass2\" ] || [ \"$error1\" != \"$error2\" ];\nthen\n    exit 1\nelse\n    exit 0\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/lib/zip_dirent.c\" \"$PROJECT_DIR/source/lib/zip_dirent.c\""
+    }
+  },
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2017-12937",
+    "source_file": "coders/sun.c",
+    "record": {
+      "source_file": "coders/sun.c",
+      "programming_language": "c",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-12937\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2017-12937\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-12937\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2017-12937\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\n\ncd $1\n\n./configure --disable-shared\nmake CFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" CXXFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" LDFLAGS=\"-fno-omit-frame-pointer\" -j10\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check -j10)\n\ntotal1=$(echo \"$output1\" | grep -oP '# TOTAL: \\K\\d+')\npass1=$(echo \"$output1\" | grep -oP '# PASS:  \\K\\d+')\nskip1=$(echo \"$output1\" | grep -oP '# SKIP:  \\K\\d+')\nxfail1=$(echo \"$output1\" | grep -oP '# XFAIL: \\K\\d+')\nfail1=$(echo \"$output1\" | grep -oP '# FAIL:  \\K\\d+')\nxpass1=$(echo \"$output1\" | grep -oP '# XPASS: \\K\\d+')\nerror1=$(echo \"$output1\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total1\"\necho \"PASS:  $pass1\"\necho \"SKIP:  $skip1\"\necho \"XFAIL: $xfail1\"\necho \"FAIL:  $fail1\"\necho \"XPASS: $xpass1\"\necho \"ERROR: $error1\"\n\nmake clean\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\n./configure --disable-shared\nmake CFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" CXXFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" LDFLAGS=\"-fno-omit-frame-pointer\" -j10\nif [ $? -ne 0 ]; then\n    make clean\n    mv ./copy.c $3\n    exit 2\nfi\noutput2=$(make check -j10)\n\ntotal2=$(echo \"$output2\" | grep -oP '# TOTAL: \\K\\d+')\npass2=$(echo \"$output2\" | grep -oP '# PASS:  \\K\\d+')\nskip2=$(echo \"$output2\" | grep -oP '# SKIP:  \\K\\d+')\nxfail2=$(echo \"$output2\" | grep -oP '# XFAIL: \\K\\d+')\nfail2=$(echo \"$output2\" | grep -oP '# FAIL:  \\K\\d+')\nxpass2=$(echo \"$output2\" | grep -oP '# XPASS: \\K\\d+')\nerror2=$(echo \"$output2\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total2\"\necho \"PASS:  $pass2\"\necho \"SKIP:  $skip2\"\necho \"XFAIL: $xfail2\"\necho \"FAIL:  $fail2\"\necho \"XPASS: $xpass2\"\necho \"ERROR: $error2\"\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\nmake clean\n\nif [ \"$total1\" != \"$total2\" ] || [ \"$pass1\" != \"$pass2\" ] || [ \"$skip1\" != \"$skip2\" ] || [ \"$xfail1\" != \"$xfail2\" ] || [ \"$fail1\" != \"$fail2\" ] || [ \"$xpass1\" != \"$xpass2\" ] || [ \"$error1\" != \"$error2\" ];\nthen\n    exit 1\nelse\n    exit 0\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/coders/sun.c\" \"$PROJECT_DIR/source/coders/sun.c\""
+    }
+  },
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2017-6828",
+    "source_file": "libaudiofile/WAVE.cpp",
+    "record": {
+      "source_file": "libaudiofile/WAVE.cpp",
+      "programming_language": "cpp",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-6828\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2017-6828\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-6828\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2017-6828\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\n\ncd $1\n\nmake clean\nCC=clang-10 CXX=clang++-10 ./autogen.sh --disable-docs CFLAGS=\"-fno-omit-frame-pointer -g -Wno-narrowing\" CXXFLAGS=\"-fno-omit-frame-pointer -g -Wno-narrowing\"\nmake -j10\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check -j10)\n\ntotal1=$(echo \"$output1\" | grep -oP '# TOTAL: \\K\\d+')\npass1=$(echo \"$output1\" | grep -oP '# PASS:  \\K\\d+')\nskip1=$(echo \"$output1\" | grep -oP '# SKIP:  \\K\\d+')\nxfail1=$(echo \"$output1\" | grep -oP '# XFAIL: \\K\\d+')\nfail1=$(echo \"$output1\" | grep -oP '# FAIL:  \\K\\d+')\nxpass1=$(echo \"$output1\" | grep -oP '# XPASS: \\K\\d+')\nerror1=$(echo \"$output1\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total1\"\necho \"PASS:  $pass1\"\necho \"SKIP:  $skip1\"\necho \"XFAIL: $xfail1\"\necho \"FAIL:  $fail1\"\necho \"XPASS: $xpass1\"\necho \"ERROR: $error1\"\n\nmake clean\n\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\nCC=clang-10 CXX=clang++-10 ./autogen.sh --disable-docs CFLAGS=\"-fno-omit-frame-pointer -g -Wno-narrowing\" CXXFLAGS=\"-fno-omit-frame-pointer -g -Wno-narrowing\"\nmake -j10\nif [ $? -ne 0 ]; then\n    make clean\n    for ((i=0; i<=$count; i++)); do\n        mv ./copy${i}.c ${buggy_paths[$i]}\n    done\n    exit 2\nfi\noutput2=$(make check -j10)\n\ntotal2=$(echo \"$output2\" | grep -oP '# TOTAL: \\K\\d+')\npass2=$(echo \"$output2\" | grep -oP '# PASS:  \\K\\d+')\nskip2=$(echo \"$output2\" | grep -oP '# SKIP:  \\K\\d+')\nxfail2=$(echo \"$output2\" | grep -oP '# XFAIL: \\K\\d+')\nfail2=$(echo \"$output2\" | grep -oP '# FAIL:  \\K\\d+')\nxpass2=$(echo \"$output2\" | grep -oP '# XPASS: \\K\\d+')\nerror2=$(echo \"$output2\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total2\"\necho \"PASS:  $pass2\"\necho \"SKIP:  $skip2\"\necho \"XFAIL: $xfail2\"\necho \"FAIL:  $fail2\"\necho \"XPASS: $xpass2\"\necho \"ERROR: $error2\"\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\n\nmake clean\n\nif [ \"$total1\" != \"$total2\" ] || [ \"$pass1\" != \"$pass2\" ] || [ \"$skip1\" != \"$skip2\" ] || [ \"$xfail1\" != \"$xfail2\" ] || [ \"$fail1\" != \"$fail2\" ] || [ \"$xpass1\" != \"$xpass2\" ] || [ \"$error1\" != \"$error2\" ];\nthen\n    exit 1\nelse\n    exit 0\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/libaudiofile/WAVE.cpp\" \"$PROJECT_DIR/source/libaudiofile/WAVE.cpp\""
+    }
+  },
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2017-7607",
+    "source_file": "src/readelf.c",
+    "record": {
+      "source_file": "src/readelf.c",
+      "programming_language": "c",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-7607\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2017-7607\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-7607\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2017-7607\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\n\ncd $1\n\n./configure --enable-shared=no CFLAGS=\"-Wno-error -fno-omit-frame-pointer -g\" CXXFLAGS=\"-Wno-error -fno-omit-frame-pointer -g\" LDFLAGS=\"-fno-omit-frame-pointer\"\nmake -j10\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check -j10)\n\ntotal1=$(echo \"$output1\" | grep -oP '# TOTAL: \\K\\d+')\npass1=$(echo \"$output1\" | grep -oP '# PASS:  \\K\\d+')\nskip1=$(echo \"$output1\" | grep -oP '# SKIP:  \\K\\d+')\nxfail1=$(echo \"$output1\" | grep -oP '# XFAIL: \\K\\d+')\nfail1=$(echo \"$output1\" | grep -oP '# FAIL:  \\K\\d+')\nxpass1=$(echo \"$output1\" | grep -oP '# XPASS: \\K\\d+')\nerror1=$(echo \"$output1\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total1\"\necho \"PASS:  $pass1\"\necho \"SKIP:  $skip1\"\necho \"XFAIL: $xfail1\"\necho \"FAIL:  $fail1\"\necho \"XPASS: $xpass1\"\necho \"ERROR: $error1\"\n\nmake clean\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\n./configure --enable-shared=no CFLAGS=\"-Wno-error -fno-omit-frame-pointer -g\" CXXFLAGS=\"-Wno-error -fno-omit-frame-pointer -g\" LDFLAGS=\"-fno-omit-frame-pointer\"\nmake -j10\nif [ $? -ne 0 ]; then\n    make clean\n    mv ./copy.c $3\n    exit 2\nfi\noutput2=$(make check -j10)\n\n\ntotal2=$(echo \"$output2\" | grep -oP '# TOTAL: \\K\\d+')\npass2=$(echo \"$output2\" | grep -oP '# PASS:  \\K\\d+')\nskip2=$(echo \"$output2\" | grep -oP '# SKIP:  \\K\\d+')\nxfail2=$(echo \"$output2\" | grep -oP '# XFAIL: \\K\\d+')\nfail2=$(echo \"$output2\" | grep -oP '# FAIL:  \\K\\d+')\nxpass2=$(echo \"$output2\" | grep -oP '# XPASS: \\K\\d+')\nerror2=$(echo \"$output2\" | grep -oP '# ERROR: \\K\\d+')\n\necho \"TOTAL: $total2\"\necho \"PASS:  $pass2\"\necho \"SKIP:  $skip2\"\necho \"XFAIL: $xfail2\"\necho \"FAIL:  $fail2\"\necho \"XPASS: $xpass2\"\necho \"ERROR: $error2\"\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\nmake clean\n\nif [ \"$total1\" != \"$total2\" ] || [ \"$pass1\" != \"$pass2\" ] || [ \"$skip1\" != \"$skip2\" ] || [ \"$xfail1\" != \"$xfail2\" ] || [ \"$fail1\" != \"$fail2\" ] || [ \"$xpass1\" != \"$xpass2\" ] || [ \"$error1\" != \"$error2\" ];\nthen\n    exit 1\nelse\n    exit 0\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/src/readelf.c\" \"$PROJECT_DIR/source/src/readelf.c\""
+    }
+  },
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2017-7962",
+    "source_file": "src/imagew-gif.c",
+    "record": {
+      "source_file": "src/imagew-gif.c",
+      "programming_language": "c",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-7962\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2017-7962\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-7962\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2017-7962\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\ncd $1\n\n./scripts/autogen.sh\n./configure --disable-shared\nmake CFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" CXXFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" LDFLAGS=\"-fno-omit-frame-pointer\" -j32\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check -j32)\necho $output1 > ../tmp1.txt\n\nmake clean\n\n\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\n./scripts/autogen.sh\n./configure --disable-shared\nmake CFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" CXXFLAGS=\"-static -fno-omit-frame-pointer -ggdb\" LDFLAGS=\"-fno-omit-frame-pointer\" -j32\n\nif [ $? -ne 0 ]; then\n    make clean\n    for ((i=0; i<=$count; i++)); do\n        mv ./copy${i}.c ${buggy_paths[$i]}\n    done\n    exit 2\nfi\noutput2=$(make check -j32)\necho $output2 > ../tmp2.txt\n\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\n\nmake clean\n\nif diff -q ../tmp1.txt ../tmp2.txt >/dev/null; then\n    rm -rf ../tmp1.txt ../tmp2.txt\n    exit 0\nelse\n    rm -rf ../tmp1.txt ../tmp2.txt\n    exit 1\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/src/imagew-gif.c\" \"$PROJECT_DIR/source/src/imagew-gif.c\""
+    }
+  },
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2017-9209",
+    "source_file": "libqpdf/QPDF.cc",
+    "record": {
+      "source_file": "libqpdf/QPDF.cc",
+      "programming_language": "cpp",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-9209\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2017-9209\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2017-9209\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2017-9209\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\ncd $1\n\n./autogen.sh\n./configure --enable-shared=no\nmake CFLAGS=\"-fno-omit-frame-pointer -g\" CXXFLAGS=\"-fno-omit-frame-pointer -g\" LDFLAGS=\"-fno-omit-frame-pointer\" -j32\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check -j32)\n\n\ntotal1=$(echo \"$output1\" | grep -oP 'Total tests: \\K\\d+')\npass1=$(echo \"$output1\" | grep -oP 'Passes: \\K\\d+')\nfail1=$(echo \"$output1\" | grep -oP 'Failures: \\K\\d+')\nunexpass1=$(echo \"$output1\" | grep -oP 'Unexpected Passes: \\K\\d+')\nexpfail1=$(echo \"$output1\" | grep -oP 'Expected Failures: \\K\\d+')\nmisstest1=$(echo \"$output1\" | grep -oP 'Missing Tests: \\K\\d+')\nextratest1=$(echo \"$output1\" | grep -oP 'Extra Tests: \\K\\d+')\n\necho \"Total tests: $total1\"\necho \"Passes:  $pass1\"\necho \"Failures:  $fail1\"\necho \"Unexpected Passes: $unexpass1\"\necho \"Expected Failures:  $expfail1\"\necho \"Missing Tests: $misstest1\"\necho \"Extra Tests: $extratest1\"\n\nmake clean\n\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\n./autogen.sh\n./configure --enable-shared=no\nmake CFLAGS=\"-fno-omit-frame-pointer -g\" CXXFLAGS=\"-fno-omit-frame-pointer -g\" LDFLAGS=\"-fno-omit-frame-pointer\" -j32\nif [ $? -ne 0 ]; then\n    make clean\n    for ((i=0; i<=$count; i++)); do\n        mv ./copy${i}.c ${buggy_paths[$i]}\n    done\n    exit 2\nfi\noutput2=$(make check -j32)\n\ntotal2=$(echo \"$output2\" | grep -oP 'Total tests: \\K\\d+')\npass2=$(echo \"$output2\" | grep -oP 'Passes: \\K\\d+')\nfail2=$(echo \"$output2\" | grep -oP 'Failures: \\K\\d+')\nunexpass2=$(echo \"$output2\" | grep -oP 'Unexpected Passes: \\K\\d+')\nexpfail2=$(echo \"$output2\" | grep -oP 'Expected Failures: \\K\\d+')\nmisstest2=$(echo \"$output2\" | grep -oP 'Missing Tests: \\K\\d+')\nextratest2=$(echo \"$output2\" | grep -oP 'Extra Tests: \\K\\d+')\n\necho \"Total tests: $total2\"\necho \"Passes:  $pass2\"\necho \"Failures:  $fail2\"\necho \"Unexpected Passes: $unexpass2\"\necho \"Expected Failures:  $expfail2\"\necho \"Missing Tests: $misstest2\"\necho \"Extra Tests: $extratest2\"\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\n\nmake clean\n\nif [ \"$total1\" != \"$total2\" ] || [ \"$pass1\" != \"$pass2\" ] || [ \"$fail1\" != \"$fail2\" ] || [ \"$unexpass1\" != \"$unexpass2\" ] || [ \"$expfail1\" != \"$expfail2\" ] || [ \"$misstest1\" != \"$misstest2\" ] || [ \"$extratest1\" != \"$extratest2\" ];\nthen\n    exit 1\nelse\n    exit 0\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/libqpdf/QPDF.cc\" \"$PROJECT_DIR/source/libqpdf/QPDF.cc\""
+    }
+  },
+  {
+    "dataset": "Vul4c",
+    "case_id": "CVE-2018-10677",
+    "source_file": "ngiflib.c",
+    "record": {
+      "source_file": "ngiflib.c",
+      "programming_language": "c",
+      "poc_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2018-10677\"\nrm -rf \"$PROJECT_DIR\"\nvul4c checkout -i \"CVE-2018-10677\" -d \"$PROJECT_DIR\"\ncd \"$PROJECT_DIR/source\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\nvul4c compile -d \"$PROJECT_DIR\"\nvul4c reproduce -d \"$PROJECT_DIR\"",
+      "unit_test_cmd": "# From vul4c/vul4c:4.0\nset -euo pipefail\nPROJECT_DIR=\"/tmp/mv-bdsr-vul4c/CVE-2018-10677\"\nTEST_SCRIPT=\"/tmp/mv_bdsr_vul4c_project_test.sh\"\nrm -rf \"$PROJECT_DIR\" \"$TEST_SCRIPT\"\nvul4c checkout -i \"CVE-2018-10677\" -d \"$PROJECT_DIR\"\ncp -a \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched\"\ncd \"$PROJECT_DIR/source_patched\"\n(git apply --whitespace=fix /workspace/fix.patch 2>&1 || git apply --whitespace=fix --ignore-whitespace /workspace/fix.patch 2>&1 || patch -p1 --fuzz=3 < /workspace/fix.patch)\ncat > \"$TEST_SCRIPT\" <<'EOF'\n#! /bin/bash\ncd $1\n\nmake CFLAGS=\"-fno-omit-frame-pointer -g\" CXXFLAGS=\"-fno-omit-frame-pointer -g\" -j10\nif [ $? -ne 0 ]; then\n    exit 2\nfi\noutput1=$(make check -j32)\necho $output1 > ../tmp1.txt\n\nmake clean\n\npatch_paths=($(echo \"$2\" | tr '|' ' '))\nbuggy_paths=($(echo \"$3\" | tr '|' ' '))\ncount=$((${#patch_paths[@]} - 1))\n\nfor ((i=0; i<=$count; i++)); do\n    cp ${buggy_paths[$i]} ./copy${i}.c\n    cp ${patch_paths[$i]} ${buggy_paths[$i]}\ndone\n\nmake CFLAGS=\"-fno-omit-frame-pointer -g\" CXXFLAGS=\"-fno-omit-frame-pointer -g\" -j10\n\nif [ $? -ne 0 ]; then\n    make clean\n    for ((i=0; i<=$count; i++)); do\n        mv ./copy${i}.c ${buggy_paths[$i]}\n    done\n    exit 2\nfi\noutput2=$(make check -j32)\necho $output2 > ../tmp2.txt\n\n\nfor ((i=0; i<=$count; i++)); do\n    mv ./copy${i}.c ${buggy_paths[$i]}\ndone\n\nmake clean\n\nif diff -q ../tmp1.txt ../tmp2.txt >/dev/null; then\n    rm -rf ../tmp1.txt ../tmp2.txt\n    exit 0\nelse\n    rm -rf ../tmp1.txt ../tmp2.txt\n    exit 1\nfi\nEOF\nchmod +x \"$TEST_SCRIPT\"\n\"$TEST_SCRIPT\" \"$PROJECT_DIR/source\" \"$PROJECT_DIR/source_patched/ngiflib.c\" \"$PROJECT_DIR/source/ngiflib.c\""
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2015-8213",
+    "source_file": "django/utils/formats.py",
+    "record": {
+      "cve_id": "CVE-2015-8213",
+      "programming_language": "Python",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2015-8213:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/django\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\ncd tests && /workspace/PoC_env/CVE-2015-8213/bin/python ./runtests.py i18n.tests.FormattingTests.test_format_arbitrary_settings\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2015-8213:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/django\ngit apply --whitespace=nowarn /workspace/fix.patch\ncd tests && /workspace/PoC_env/CVE-2015-8213/bin/python ./runtests.py i18n.tests\n"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2023-30172",
+    "source_file": "mlflow/server/handlers.py",
+    "record": {
+      "cve_id": "CVE-2023-30172",
+      "programming_language": "Python",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2023-30172:latest\n# bash /workspace/fix-run.sh\nset -e\nexport PATH=\"/workspace/PoC_env/CVE-2023-30172/bin:$PATH\"\ncd /workspace/mlflow\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\n/workspace/PoC_env/CVE-2023-30172/bin/python -m pytest tests/tracking/test_rest_tracking.py::test_path_validation tests/tracking/test_rest_tracking.py::test_validate_path_is_safe_good tests/tracking/test_rest_tracking.py::test_validate_path_is_safe_bad\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2023-30172:latest\n# bash /workspace/unit_test.sh\nset -e\nexport PATH=\"/workspace/PoC_env/CVE-2023-30172/bin:$PATH\"\ncd /workspace/mlflow\ngit apply --whitespace=nowarn /workspace/fix.patch\n/workspace/PoC_env/CVE-2023-30172/bin/python -m pytest tests/tracking/test_rest_tracking.py -k \"not test_log_model[file] and not test_log_model[sqlalchemy] and not test_artifacts[file] and not test_artifacts[sqlalchemy]\" -p no:warning --disable-warnings\n"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2021-3583",
+    "source_file": "lib/ansible/template/__init__.py",
+    "record": {
+      "cve_id": "CVE-2021-3583",
+      "programming_language": "Python",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2021-3583:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/ansible\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\nPYTHONPATH=./lib /workspace/PoC_env/CVE-2021-3583/bin/ansible-playbook test/integration/targets/template/unsafe.yml -v\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2021-3583:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/ansible\ngit apply --whitespace=nowarn /workspace/fix.patch\n# PYTHONPATH=./lib /workspace/PoC_env/CVE-2021-3583/bin/ansible-playbook test/integration/targets/template/72262.yml test/integration/targets/template/6653.yml test/integration/targets/template/72615.yml -v\ncd test/integration/targets/template/\n# Test for several corner cases #57188\nPYTHONPATH=./lib /workspace/PoC_env/CVE-2021-3583/bin/ansible-playbook corner_cases.yml -v \"$@\"\n\n# Test for #57351\nPYTHONPATH=./lib /workspace/PoC_env/CVE-2021-3583/bin/ansible-playbook filter_plugins.yml -v \"$@\"\n\n# https://github.com/ansible/ansible/issues/68699\nPYTHONPATH=./lib /workspace/PoC_env/CVE-2021-3583/bin/ansible-playbook unused_vars_include.yml -v \"$@\"\n\n# https://github.com/ansible/ansible/issues/55152\nPYTHONPATH=./lib /workspace/PoC_env/CVE-2021-3583/bin/ansible-playbook undefined_var_info.yml -v \"$@\"\n\n# https://github.com/ansible/ansible/issues/72615\nPYTHONPATH=./lib /workspace/PoC_env/CVE-2021-3583/bin/ansible-playbook 72615.yml -v \"$@\"\n\n# https://github.com/ansible/ansible/issues/6653\nPYTHONPATH=./lib /workspace/PoC_env/CVE-2021-3583/bin/ansible-playbook 6653.yml -v \"$@\"\n\n# https://github.com/ansible/ansible/issues/72262\nPYTHONPATH=./lib /workspace/PoC_env/CVE-2021-3583/bin/ansible-playbook 72262.yml -v \"$@\"\n"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2017-1000189",
+    "source_file": "lib/ejs.js",
+    "record": {
+      "cve_id": "CVE-2017-1000189",
+      "programming_language": "JavaScript",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2017-1000189:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/ejs\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\nnpx mocha --grep \"disallow unsafe opts passed along in data\"\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2017-1000189:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/ejs\ngit apply --whitespace=nowarn /workspace/fix.patch\nnpx mocha --timeout 3000 test/ejs.js --grep \"whitespace slurp and rmWhitespace work\" --invert"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2021-3664",
+    "source_file": "index.js",
+    "record": {
+      "cve_id": "CVE-2021-3664",
+      "programming_language": "JavaScript",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2021-3664:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/url-parse\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch  /workspace/dep.patch\nnode --require ./preload.js ./node_modules/.bin/mocha --grep \"handles slashes after the protocol for non special URLs\"\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2021-3664:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/url-parse\ngit apply --whitespace=nowarn /workspace/fix.patch /workspace/dep.patch\nnode --require ./preload.js ./node_modules/.bin/mocha --grep 'correctly resolves paths|handles the file: protocol' --invert test/test.js"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2017-16025",
+    "source_file": "lib/socket.js",
+    "record": {
+      "cve_id": "CVE-2017-16025",
+      "programming_language": "JavaScript",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2017-16025:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/nes\n\nGLOBAL_EXCLUDE=\"AggregateError,Atomics,BigUint64Array,BigInt64Array,BigInt,FinalizationRegistry,WeakRef,URL,URLSearchParams,DOMException,AbortController,AbortSignal,Event,EventTarget,TextEncoder,TextDecoder,TransformStream,TransformStreamDefaultController,WritableStream,WritableStreamDefaultController,WritableStreamDefaultWriter,ReadableStream,ReadableStreamDefaultReader,ReadableStreamBYOBReader,ReadableStreamBYOBRequest,ReadableByteStreamController,ReadableStreamDefaultController,ByteLengthQueuingStrategy,CountQueuingStrategy,TextEncoderStream,TextDecoderStream,CompressionStream,DecompressionStream,queueMicrotask,structuredClone,atob,btoa,BroadcastChannel,MessageChannel,MessagePort,Blob,File,Performance,PerformanceEntry,PerformanceMark,PerformanceMeasure,PerformanceObserver,PerformanceObserverEntryList,PerformanceResourceTiming,performance,fetch,FormData,Headers,Request,Response,MessageEvent,WebSocket,Iterator,SharedArrayBuffer,Navigator,navigator,crypto,CryptoKey,SubtleCrypto,CustomEvent,Crypto\"\n\nexport NODE_NO_WARNINGS=1\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\nnode node_modules/lab/bin/lab \\\n    -a code \\\n    --globals $GLOBAL_EXCLUDE \\\n    -g \"errors on invalid cookie\" \\\n    test/auth.js\n\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2017-16025:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/nes\n\nGLOBAL_EXCLUDE=\"AggregateError,Atomics,BigUint64Array,BigInt64Array,BigInt,FinalizationRegistry,WeakRef,URL,URLSearchParams,DOMException,AbortController,AbortSignal,Event,EventTarget,TextEncoder,TextDecoder,TransformStream,TransformStreamDefaultController,WritableStream,WritableStreamDefaultController,WritableStreamDefaultWriter,ReadableStream,ReadableStreamDefaultReader,ReadableStreamBYOBReader,ReadableStreamBYOBRequest,ReadableByteStreamController,ReadableStreamDefaultController,ByteLengthQueuingStrategy,CountQueuingStrategy,TextEncoderStream,TextDecoderStream,CompressionStream,DecompressionStream,queueMicrotask,structuredClone,atob,btoa,BroadcastChannel,MessageChannel,MessagePort,Blob,File,Performance,PerformanceEntry,PerformanceMark,PerformanceMeasure,PerformanceObserver,PerformanceObserverEntryList,PerformanceResourceTiming,performance,fetch,FormData,Headers,Request,Response,MessageEvent,WebSocket,Iterator,SharedArrayBuffer,Navigator,navigator,crypto,CryptoKey,SubtleCrypto,CustomEvent,Crypto\"\n\nexport NODE_NO_WARNINGS=1\n\nnode node_modules/lab/bin/lab \\\n    -a code \\\n    --globals $GLOBAL_EXCLUDE \\\n    test/index.js test/auth.js test/listener.js test/socket.js\n\n"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2024-27289",
+    "source_file": "internal/sanitize/sanitize.go",
+    "record": {
+      "cve_id": "CVE-2024-27289",
+      "programming_language": "Go",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2024-27289:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/pgx\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\ngo test  -timeout 30s -run ^TestQuerySanitize$ github.com/jackc/pgx/v4/internal/sanitize\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2024-27289:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/pgx\ngit apply --whitespace=nowarn /workspace/fix.patch\ngo test -timeout 30s -run ^TestNewQuery$ github.com/jackc/pgx/v4/internal/sanitize"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2022-24738",
+    "source_file": "x/claims/keeper/ibc_callbacks.go",
+    "record": {
+      "cve_id": "CVE-2022-24738",
+      "programming_language": "Go",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2022-24738:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/evmos\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\ncd ./x/claims/keeper && go test   -timeout 30s -run ^TestKeeperTestSuite$ -testify.m ^TestReceive$ github.com/tharsis/evmos/v2/x/claims/keeper\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2022-24738:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/evmos\ngit apply --whitespace=nowarn /workspace/test.patch\ncd ./x/claims/keeper && go test   -timeout 30s -run ^TestKeeperTestSuite$ -testify.m '^(TestAck|TestOnAckClaim|TestOnReceiveClaim)$' github.com/tharsis/evmos/v2/x/claims/keeper\n"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2019-10787",
+    "source_file": "index.js",
+    "record": {
+      "cve_id": "CVE-2019-10787",
+      "programming_language": "JavaScript",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2019-10787:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/node-im-resize\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\njest ./poc\n",
+      "unit_test_cmd": "npx mocha --#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2019-10787:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/node-im-resize\ngit apply --whitespace=nowarn /workspace/fix.patch\nnpx mocha  --grep \"resize.path()|resize.crop()|resize.resize()|resize.cmd()|resize.cmdVersion()\""
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2021-29417",
+    "source_file": "internal/pkg/gitjacker/retriever.go",
+    "record": {
+      "cve_id": "CVE-2021-29417",
+      "programming_language": "Go",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2021-29417:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/gitjacker\nrm -rf ./internal/pkg/gitjacker/retriever_test.go\ngo mod vendor\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\ngo test   -timeout 30s -run ^TestDownloadFile_PathTraversal$ github.com/liamg/gitjacker/internal/pkg/gitjacker\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2021-29417:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/gitjacker\ngo mod vendor\ngit apply --whitespace=nowarn /workspace/fix.patch\ncd internal/pkg/gitjacker && go test   -timeout 30s -v github.com/liamg/gitjacker/internal/pkg/gitjacker\n"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2020-10691",
+    "source_file": "lib/ansible/galaxy/collection.py",
+    "record": {
+      "cve_id": "CVE-2020-10691",
+      "programming_language": "Python",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2020-10691:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/ansible\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\n/workspace/PoC_env/CVE-2020-10691/bin/ansible-test integration ansible-galaxy-collection --python 3.8 --tags \"bad_tarball\" --allow-disabled && /workspace/PoC_env/CVE-2020-10691/bin/pytest test/units/galaxy/test_collection.py::test_extract_tar_file_outside_dir",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2020-10691:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/ansible\ngit apply --whitespace=nowarn /workspace/fix.patch\n/workspace/PoC_env/CVE-2020-10691/bin/ansible-test integration ansible-galaxy-collection --python 3.8 --tags \"bad_tarball\" --allow-disabled && /workspace/PoC_env/CVE-2020-10691/bin/pytest test/units/galaxy/test_collection.py"
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2020-4037",
+    "source_file": "oauthproxy.go",
+    "record": {
+      "cve_id": "CVE-2020-4037",
+      "programming_language": "Go",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2020-4037:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/oauth2-proxy\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\nsed -i '4d;15d;439,481d' oauthproxy_test.go\ngo test   -timeout 30s -run ^TestIsValidRedirect$ github.com/oauth2-proxy/oauth2-proxy\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2020-4037:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/oauth2-proxy\ngit apply --whitespace=nowarn /workspace/fix.patch\ngo test  -v -timeout 30s "
+    }
+  },
+  {
+    "dataset": "PatchEval",
+    "case_id": "CVE-2016-10548",
+    "source_file": "index.js",
+    "record": {
+      "cve_id": "CVE-2016-10548",
+      "programming_language": "JavaScript",
+      "poc_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2016-10548:latest\n# bash /workspace/fix-run.sh\nset -e\n\ncd /workspace/reduce-css-calc\ngit apply --whitespace=nowarn /workspace/test.patch /workspace/fix.patch\njest --forceExit ./poc\n",
+      "unit_test_cmd": "#!/bin/bash\n# From ghcr.io/anonymous2578-data/cve-2016-10548:latest\n# bash /workspace/unit_test.sh\nset -e\n\ncd /workspace/reduce-css-calc\ngit apply --whitespace=nowarn /workspace/fix.patch\nnpm test\n"
+    }
+  }
+]

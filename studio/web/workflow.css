@@ -1,0 +1,78 @@
+.workflow-banner{display:flex;align-items:center;gap:12px;padding:14px 24px;border-top:1px solid var(--border);font-size:13px;background:color-mix(in srgb,var(--accent) 3%,transparent)}
+.workflow-status-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 9%,transparent);flex-shrink:0}.workflow-banner.is-active .workflow-status-dot{animation:workflow-pulse 2s ease-in-out infinite}
+.workflow-banner strong{font-size:14px}.workflow-total{display:flex;align-items:center;gap:6px;color:var(--muted);font-variant-numeric:tabular-nums}.workflow-total .icon{width:14px;height:14px}.workflow-connection{margin-left:auto;color:var(--muted);font-size:12px}
+.workflow-live {
+ --feed-accent:var(--accent);
+ display:block;position:relative;isolation:isolate;margin:20px 24px 24px;
+ border:1px solid color-mix(in srgb,var(--feed-accent) 30%,var(--border));border-radius:16px;overflow:hidden;
+ background:linear-gradient(135deg,color-mix(in srgb,var(--feed-accent) 4%,var(--surface)),var(--surface));
+}
+.workflow-live.is-disconnected {--feed-accent:var(--amber,#e6b566)}
+.workflow-feed {padding:22px 26px 16px;min-width:0}
+.workflow-feed-header,.workflow-feed-title,.workflow-feed-meta {display:flex;align-items:center}
+.workflow-feed-header {justify-content:space-between;gap:16px;margin-bottom:20px}
+.workflow-feed-title {gap:10px;min-width:0}
+.workflow-feed-title h2 {margin:0;font-size:14px;font-weight:600;letter-spacing:0;line-height:1.5}
+.workflow-terminal {display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--feed-accent)}
+.workflow-terminal .icon {width:16px;height:16px}
+.workflow-feed-meta {gap:16px;flex-shrink:0}
+.workflow-event-count {font-size:11px;color:var(--muted)}
+.workflow-signal {display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid color-mix(in srgb,var(--feed-accent) 25%,transparent);border-radius:6px;background:color-mix(in srgb,var(--feed-accent) 6%,transparent);font:600 10px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--feed-accent)}
+.workflow-signal-bars {display:flex;align-items:center;gap:2px;height:13px}
+.workflow-signal-bars i {width:2px;height:12px;border-radius:2px;background:currentColor;transform:scaleY(.35);animation:workflow-signal 1.1s ease-in-out infinite;animation-delay:calc(var(--bar) * -170ms)}
+.workflow-timeline {list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.workflow-event {position:relative;display:grid;grid-template-columns:20px minmax(0,1fr);gap:16px;animation:workflow-event-in .45s cubic-bezier(.2,.8,.2,1) both}
+.workflow-event:before {content:'';position:absolute;left:9px;top:24px;bottom:-30px;width:1px;background:var(--border);z-index:-1}
+.workflow-event:has(+.is-latest):before {bottom:-40px;background:linear-gradient(var(--border),var(--feed-accent))}
+.workflow-event:last-child:before {display:none}
+.workflow-event-node {position:relative;display:grid;place-items:center;width:20px;height:20px;margin-top:14px}
+.workflow-event-node i {width:5px;height:5px;border-radius:50%;background:var(--faint);box-shadow:0 0 0 4px var(--surface)}
+.workflow-event.is-latest .workflow-event-node {margin-top:24px;color:var(--feed-accent)}
+.workflow-event.is-latest .workflow-event-node i {width:6px;height:6px;background:currentColor;box-shadow:0 0 12px color-mix(in srgb,var(--feed-accent) 45%,transparent)}
+.workflow-event.is-latest .workflow-event-node:after {content:'';position:absolute;inset:-1px;border:1px solid color-mix(in srgb,var(--feed-accent) 20%,transparent);border-top:2px solid currentColor;border-right-color:currentColor;border-radius:50%;animation:workflow-orbit 2.2s linear infinite}
+.workflow-event-card {min-width:0;display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;padding:14px 16px;border:1px solid transparent;border-radius:10px}
+.workflow-event-meta {min-width:0;color:var(--muted)}
+.workflow-event-meta time {font:11px/1.7 var(--mono);font-variant-numeric:tabular-nums}
+.workflow-event-label {display:none}
+.workflow-event-message {min-width:0;margin:0;font-size:12px;line-height:1.65;color:var(--muted);overflow-wrap:anywhere}
+.workflow-event.is-latest .workflow-event-card {position:relative;display:block;overflow:hidden;padding:14px 18px 20px;border-color:color-mix(in srgb,var(--feed-accent) 30%,var(--border));background:linear-gradient(105deg,color-mix(in srgb,var(--feed-accent) 11%,var(--surface)),color-mix(in srgb,var(--feed-accent) 2%,var(--surface)))}
+.workflow-event.is-latest .workflow-event-meta {display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:7px}
+.workflow-event.is-latest .workflow-event-label {display:block;color:var(--feed-accent);font:600 9px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.workflow-event.is-latest .workflow-event-message {color:var(--text);font-size:18px;line-height:1.5;font-weight:550;letter-spacing:-.2px}
+.workflow-event-track {position:absolute;bottom:0;left:0;right:0;height:3px;overflow:hidden;background:color-mix(in srgb,var(--feed-accent) 8%,transparent)}
+.workflow-event-track i {display:block;width:36%;height:100%;background:linear-gradient(90deg,transparent,var(--feed-accent),#88ccff,transparent);filter:drop-shadow(0 0 4px var(--feed-accent));animation:workflow-stream 2.5s cubic-bezier(.4,0,.2,1) infinite}
+.workflow-feed-footer {display:flex;align-items:center;justify-content:space-between;gap:14px;margin:10px 0 0 36px;padding-top:14px;border-top:1px solid var(--border);color:var(--muted);font-size:10px}
+.workflow-listening {display:flex;align-items:center;gap:9px;min-width:0}
+.workflow-listening-dots {display:flex;gap:3px;flex-shrink:0;color:var(--feed-accent)}
+.workflow-listening-dots i {width:3px;height:3px;border-radius:50%;background:currentColor;animation:workflow-listen 1.5s ease-in-out infinite}
+.workflow-listening-dots i:nth-child(2) {animation-delay:.2s}
+.workflow-listening-dots i:nth-child(3) {animation-delay:.4s}
+.workflow-event-age {white-space:nowrap;font-variant-numeric:tabular-nums}
+.workflow-event-age strong {display:inline-block;min-width:34px;margin-left:5px;color:var(--text);font:500 10px var(--mono);text-align:right}
+.workflow-feed-empty {min-height:110px;display:flex;align-items:center;justify-content:center;gap:12px;color:var(--muted);font-size:12px}
+.workflow-live.is-disconnected .workflow-signal-bars i,.workflow-live.is-disconnected .workflow-event-track i,.workflow-live.is-disconnected .workflow-listening-dots i,.workflow-live.is-disconnected .workflow-event-node:after {animation-play-state:paused}
+.focused-workspace.is-paused .spinner,.workflow-live.is-paused .workflow-signal-bars i,.workflow-live.is-paused .workflow-event-track i,.workflow-live.is-paused .workflow-listening-dots i,.workflow-live.is-paused .workflow-event-node:after,.focused-workspace.is-paused .validation-live-dot,.focused-workspace.is-paused .validation-progress-track>.running:after,.focused-workspace.is-paused .validation-activity-line:after {animation-play-state:paused!important}
+.workflow-live.is-paused .workflow-signal,.workflow-banner.is-paused {color:var(--amber)}
+.workflow-live.is-paused .workflow-event-track,.workflow-live.is-paused .workflow-signal-bars {opacity:.35}
+@keyframes workflow-signal {0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes workflow-stream {from{transform:translateX(-110%)}to{transform:translateX(390%)}}
+@keyframes workflow-listen {0%,70%,100%{opacity:.3;transform:translateY(0)}35%{opacity:1;transform:translateY(-2px)}}
+.focused-workspace .pipeline{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden}.focused-workspace .pipeline>button{min-width:0;flex:1;gap:10px;padding:14px 12px}.focused-workspace .pipeline .step-title{font-size:12px;display:flex;flex-direction:column;align-items:flex-start;gap:3px}.focused-workspace .pipeline .step-state-label{display:block;margin:0;font-size:10px}.pipeline .step-state-running .step-number{position:relative;box-shadow:0 0 20px color-mix(in srgb,var(--accent) 15%,transparent)}.pipeline .step-state-running .step-number:after{content:'';position:absolute;inset:-5px;border:1px solid transparent;border-top-color:var(--accent);border-radius:50%;animation:workflow-orbit 2.5s linear infinite}
+.repair-report{padding:28px}.report-heading{display:flex;align-items:center;justify-content:space-between;gap:24px}.report-heading h2{font-size:24px;letter-spacing:-.7px;margin:8px 0}.report-heading p{font-size:13px;color:var(--muted);margin:0}.report-heading .label{font-size:10px;letter-spacing:.14em}.report-downloads{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:340px}.report-metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:12px;margin:24px 0;overflow:hidden}.report-metrics>div{padding:18px 20px;border-right:1px solid var(--border)}.report-metrics>div:last-child{border:0}.report-metrics span{font-size:11px;color:var(--muted);display:block;margin-bottom:8px}.report-metrics strong{font:600 24px/1.2 var(--mono);color:var(--accent)}
+.report-content{display:grid;gap:20px}.report-section{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;min-width:0}.report-section-heading{display:flex;align-items:center;gap:12px;margin-bottom:18px}.report-section-heading>span{font:500 12px/1 var(--mono);color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);border-radius:6px;padding:8px}.report-section-heading h3{margin:0;font-size:16px}.report-section-heading>.btn{margin-left:auto}.report-summary{font-size:14px;line-height:1.85;white-space:pre-wrap;overflow-wrap:anywhere;max-width:100ch;color:var(--muted)}.report-section p{color:var(--muted);font-size:13px}.report-section details{color:var(--muted);font-size:13px;line-height:1.7}.report-section summary{cursor:pointer}.report-patch{border-top:2px solid var(--accent)}.report-patch-preview{max-height:340px;overflow:auto;border:1px solid var(--border);border-radius:8px}.report-patch-preview .diff-line{font-size:12px}.report-selected h4{font-size:13px;display:flex;align-items:center;gap:8px;margin:0 0 14px}.report-selected h4 .icon{width:16px;color:var(--accent)}.report-selected>div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.report-selected button{text-align:left;padding:14px;border-radius:10px;border:1px solid var(--border);background:color-mix(in srgb,var(--accent) 4%,transparent);color:var(--text);cursor:pointer}.report-selected button:hover{border-color:var(--accent)}.report-selected button>span{font:11px var(--mono);color:var(--accent)}.report-selected button strong{display:block;font-size:12px;margin:8px 0;overflow-wrap:anywhere}.report-selected button small{font-size:10px;color:var(--muted);display:flex;align-items:center;justify-content:space-between}.report-selected .icon{width:13px;height:13px}.report-checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:12px}.report-checks>p{grid-column:1/-1}.report-checks>div{border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;align-items:flex-start;flex-direction:column;gap:12px}.report-checks .icon{width:20px;color:var(--accent)}.report-checks strong{font-size:12px}
+@keyframes workflow-orbit{to{transform:rotate(360deg)}}@keyframes workflow-event-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes workflow-pulse{50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 4%,transparent)}}
+@media(min-width:1550px){.workflow-event-message{font-size:13px}.workflow-feed{padding:24px 28px 18px}}
+@media(max-width:1100px){.report-heading{align-items:flex-start;flex-direction:column}.report-downloads{justify-content:flex-start;max-width:none}}
+@media(max-width:680px){.workflow-banner{padding:12px;gap:8px;flex-wrap:wrap}.workflow-banner strong{font-size:12px}.workflow-connection{margin-left:0;flex:1}.workflow-total{margin-left:auto;font-size:11px}.workflow-live{margin:12px}.workflow-feed{padding:16px 12px 14px}.workflow-feed-header{gap:10px;flex-wrap:wrap;margin-bottom:16px}.workflow-feed-title h2{font-size:13px}.workflow-feed-meta{gap:10px}.workflow-event-count{display:none}.workflow-event{gap:8px}.workflow-event-card{grid-template-columns:1fr;gap:4px;padding:10px 8px}.workflow-event-meta time{font-size:10px}.workflow-event-message{font-size:11px}.workflow-event.is-latest .workflow-event-card{padding:12px 12px 18px}.workflow-event.is-latest .workflow-event-message{font-size:16px}.workflow-feed-footer{margin-left:28px;gap:10px;flex-wrap:wrap;font-size:9px}.workflow-event-age{margin-left:auto}.focused-workspace .pipeline>button{flex:0 0 140px}.repair-report{padding:16px}.report-heading h2{font-size:21px}.report-metrics{grid-template-columns:repeat(2,1fr)}.report-metrics>div{padding:16px}.report-section{padding:16px}.report-section-heading{gap:8px;flex-wrap:wrap}.report-section-heading h3{font-size:14px}.report-selected>div{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.workflow-event,.workflow-signal-bars i,.workflow-event-track i,.workflow-listening-dots i,.workflow-event.is-latest .workflow-event-node:after,.workflow-banner.is-active .workflow-status-dot,.pipeline .step-state-running .step-number:after{animation:none}.workflow-signal-bars i:nth-child(even){transform:scaleY(.7)}.workflow-event-track i{transform:translateX(90%)}}
+.report-request {margin: 0 0 24px}
+.report-request h3 {margin: 0 0 16px}
+.report-request dl {display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px 28px; margin: 0}
+.report-request dt {color: var(--muted); font-size: 12px; margin-bottom: 5px}
+.report-request dd {margin: 0; font-size: 13px; overflow-wrap: anywhere}
+.workbench-mode .repair-report .report-metrics {padding: 0; gap: 0; grid-template-columns: repeat(4,minmax(0,1fr))}
+.repair-report .report-metrics>div {display: block; min-width: 0}
+.workbench-mode .repair-report .report-metrics strong {display: block; font-size: 24px; white-space: nowrap}
+.workbench-mode .repair-report .report-metrics strong.report-metric-note {font: 500 14px/1.7 var(--sans); white-space: normal}
+@media(max-width:680px) {.workbench-mode .repair-report .report-metrics {grid-template-columns: repeat(2,minmax(0,1fr))}}
+@media(max-width:700px) {.report-request dl {grid-template-columns: 1fr}}

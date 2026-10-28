@@ -1,0 +1,107 @@
+/* English labels need more horizontal room than the previous interface copy. */
+@media (min-width: 1101px) {
+  .shell {grid-template-columns: 268px minmax(0, 1fr)}
+  .sidebar {width: 268px}
+  .nav-text {white-space: nowrap}
+}
+.workspace-user>div:not(.avatar) {min-width: 0}
+.workspace-user>.icon {flex-shrink: 0}
+.engine-title {line-height: 1.7}
+.focused-workspace .pipeline .step-title {min-width: 0; white-space: normal; line-height: 1.45}
+.focused-workspace .pipeline .step-state-label {white-space: nowrap}
+.workspace-status .stage-copy {align-items: center}
+.workspace-heading {flex-wrap: wrap}
+.workspace-identity {flex-basis: 340px}
+.workspace-actions {margin-left: auto}
+.task-actions-menu {min-width: 250px}
+.dr-section-title {flex-wrap: wrap}
+.dr-stat-grid {align-items: end}
+.dr-stat-grid dt {line-height: 1.65}
+.dr-fact-count {flex-wrap: wrap; gap: 3px 12px}
+.dr-tabs {gap: 20px}
+.dr-source-meta>span {white-space: normal}
+.validation-timeline>header {flex-wrap: wrap; gap: 8px}
+.validation-timeline h3 {line-height: 1.5}
+.validation-step-status time {overflow-wrap: anywhere}
+.validation-overview-copy {flex-basis: 250px}
+.validation-stage-title, .review-result-aside .section-head {flex-wrap: wrap}
+.retrieval-journey>div {min-width: 0}
+.retrieval-journey strong, .retrieval-journey small {overflow-wrap: break-word}
+.retrieval-section-title {flex-wrap: wrap}
+.retrieval-lane header {flex-wrap: wrap}
+.retrieval-lane-count {margin-left: auto}
+.retrieval-row-score {flex-shrink: 0}
+.task-summary-item>span {line-height: 1.6}
+.task-record-actions {flex-wrap: wrap}
+.task-record-title .pill {white-space: normal}
+.task-case-count {white-space: normal; text-align: right}
+.modal-footer {flex-wrap: wrap}
+.modal-footer>p {flex: 1 1 230px; max-width: 100%}
+.modal-footer>.button, .modal-footer>div {flex-shrink: 0}
+.setting-row>span {flex: 0 1 40%}
+.setting-row>strong {min-width: 0}
+.page-footer {flex-wrap: wrap}
+@media (max-width: 1500px) {
+  .focused-workspace .pipeline .step-state-label {display: none}
+}
+@media (max-width: 1100px) {
+  .focused-workspace .pipeline button {font-size: 13px}
+  .task-actions-menu {min-width: 230px}
+}
+@media (max-width: 800px) {
+  .workspace-identity {flex-basis: 100%}
+  .workspace-actions {width: 100%; justify-content: flex-end}
+  .validation-overview-metrics {flex-wrap: wrap}
+  .retrieval-journey {grid-template-columns: 1fr}
+}
+@media (max-width: 680px) {
+  .filters select {min-width: 145px; max-width: 100%}
+  .focused-workspace .pipeline button {flex-direction: column; gap: 7px; padding: 11px 3px 14px; font-size: 12px}
+  .focused-workspace .pipeline .step-title {overflow-wrap: anywhere}
+  .workspace-identity .case-title {flex-wrap: wrap}
+  .workspace-actions {gap: 8px}
+  .workspace-actions>.button {white-space: normal; line-height: 1.5}
+  .workspace-status .stage-copy {display: block}
+  .workspace-status .stage-copy p {margin-top: 4px}
+  .workspace-status .runtime-history {margin-left: 30px}
+  .dr-heading, .dr-evidence-heading {flex-wrap: wrap; gap: 12px}
+  .dr-heading>div {flex: 1 1 220px}
+  .dr-heading>.button {font-size: 13px}
+  .dr-stat-grid {grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px}
+  .dr-source-toolbar {gap: 10px}
+  .dr-source-controls {width: 100%; justify-content: space-between}
+  .dr-line-jump>input {width: 55px}
+  .dr-tabs {gap: 18px; padding: 0 14px}
+  .dr-tabs>button {font-size: 13px; gap: 7px}
+  .dr-filter-label {flex-basis: 140px}
+  .dr-source-meta {gap: 8px}
+  .retrieval-heading {flex-wrap: wrap}
+  .retrieval-quicknav {gap: 8px}
+  .retrieval-quicknav button {font-size: 12px}
+  .retrieval-section-title>span:last-child {margin-left: 0; width: 100%}
+  .retrieval-merge-title {flex-wrap: wrap}
+  .retrieval-merge-count {flex-shrink: 0}
+  .retrieval-final-top {flex-wrap: wrap}
+  .validation-overview-copy {flex: 1 1 calc(100% - 50px)}
+  .validation-overview h2 {font-size: 19px}
+  .validation-overview-metrics {margin-left: 0; width: 100%; padding-top: 10px}
+  .validation-overview-metrics>div:first-child {border: 0; padding-left: 0}
+  .validation-overview-metrics strong {font-size: 24px}
+  .validation-progress-caption {flex-wrap: wrap; gap: 6px}
+  .validation-timeline ol {grid-template-columns: repeat(5, 220px)}
+  .task-summary-item>span {min-height: 42px; align-items: flex-start}
+  .task-summary-item .icon {flex-shrink: 0; margin-top: 3px}
+  .task-browser-heading {flex-wrap: wrap}
+  .task-filter-tab {font-size: 12px}
+  .task-pagination {flex-wrap: wrap; font-size: 12px}
+  .settings-card {padding: 20px}
+  .setting-row {flex-wrap: wrap; gap: 8px 12px}
+  .setting-row>span {flex-basis: 38%}
+  .setting-row>.button {white-space: normal; line-height: 1.5; padding: 8px 10px}
+  .setting-row strong {max-width: 100%; flex: 1 1 45%}
+  .modal-footer>div {flex-wrap: wrap; max-width: 100%}
+  .modal-footer .button {white-space: normal}
+  .case-pager {flex-wrap: wrap; gap: 10px}
+  .review-diff-options {flex-wrap: wrap}
+  .review-diff-options .segmented {flex-basis: 100%}
+}

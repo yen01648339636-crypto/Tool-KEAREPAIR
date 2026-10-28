@@ -1,0 +1,559 @@
+{
+  "repository_defaults": {
+    "https://github.com/vadz/libtiff": "Vul4c:CVE-2016-10267"
+  },
+  "schema_version": 1,
+  "provenance": "Repository and snapshot mappings extracted from Vul4C_Src/Vul4C.json. elfutils repository is documented at https://sourceware.org/elfutils/. Runtime uses the prepared local case and its verified source receipt.",
+  "profiles": {
+    "Vul4c:CVE-2006-2025": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "e3df7b4c5049c9c0fabb3323cfb9b49a2bf3289c",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2010-2481": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "e37dc43474886419f8ea8fea8c880499e60752f5",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2012-5134": {
+      "repository_url": "https://gitlab.gnome.org/GNOME/libxml2.git",
+      "project": "libxml2",
+      "revision": "4ea74a440d6f7ff0f6e2d25a780aee21f86762a8",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2013-4243": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "aba5f45c8a355e31c7ef6b2b46e794e36edaf098",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10092": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10093": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10094": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10266": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10267": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10268": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10271": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10272": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10349": {
+      "repository_url": "https://github.com/libarchive/libarchive.git",
+      "project": "libarchive",
+      "revision": "2d2b3e928605f795515b03f060fd638c265b0778",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-10350": {
+      "repository_url": "https://github.com/libarchive/libarchive.git",
+      "project": "libarchive",
+      "revision": "2d2b3e928605f795515b03f060fd638c265b0778",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-1838": {
+      "repository_url": "https://gitlab.gnome.org/GNOME/libxml2.git",
+      "project": "libxml2",
+      "revision": "cbb271655cadeb8dbb258a64701d9a3a0c4835b4",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-5321": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "0ba5d8814a17a64bdb8d9035f4c533f3f3f4b496",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2016-5844": {
+      "repository_url": "https://github.com/libarchive/libarchive.git",
+      "project": "libarchive",
+      "revision": "167e97be1d35c1e0947d768adbf94712244aad6b",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-12858": {
+      "repository_url": "https://github.com/nih-at/libzip.git",
+      "project": "libzip",
+      "revision": "a23ac8a766c556827255111eb35ba928641efbc8",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-12937": {
+      "repository_url": "http://hg.code.sf.net/p/graphicsmagick/code/",
+      "project": "graphicsmagick",
+      "revision": "db4eb7f97eeb",
+      "revision_kind": "mercurial",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-14103": {
+      "repository_url": "http://hg.code.sf.net/p/graphicsmagick/code/",
+      "project": "graphicsmagick",
+      "revision": "db4eb7f97eeb",
+      "revision_kind": "mercurial",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-14107": {
+      "repository_url": "https://github.com/nih-at/libzip.git",
+      "project": "libzip",
+      "revision": "a23ac8a766c556827255111eb35ba928641efbc8",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-14649": {
+      "repository_url": "http://hg.code.sf.net/p/graphicsmagick/code/",
+      "project": "graphicsmagick",
+      "revision": "db4eb7f97eeb",
+      "revision_kind": "mercurial",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-5225": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-5969": {
+      "repository_url": "https://gitlab.gnome.org/GNOME/libxml2.git",
+      "project": "libxml2",
+      "revision": "362b32293487ece0dc76b9df29c59e25c0712432",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6827": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "b62c902dd258125cac86cd2df21fc898035a43d3",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6828": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "b62c902dd258125cac86cd2df21fc898035a43d3",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6829": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "d19a5ace5ae891c778cbc710d78634de6084b846",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6830": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "d19a5ace5ae891c778cbc710d78634de6084b846",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6831": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "d19a5ace5ae891c778cbc710d78634de6084b846",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6832": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "d19a5ace5ae891c778cbc710d78634de6084b846",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6833": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "d19a5ace5ae891c778cbc710d78634de6084b846",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6834": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "d19a5ace5ae891c778cbc710d78634de6084b846",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6835": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "d19a5ace5ae891c778cbc710d78634de6084b846",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6836": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "d19a5ace5ae891c778cbc710d78634de6084b846",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-6838": {
+      "repository_url": "https://github.com/mpruett/audiofile.git",
+      "project": "audiofile",
+      "revision": "d19a5ace5ae891c778cbc710d78634de6084b846",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-7595": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "2c00d31b6cd5282d172754958b8b87c362f852ee",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-7598": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-7601": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "3144e57770c1e4d26520d8abee750f8ac8b75490",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-7602": {
+      "repository_url": "https://github.com/vadz/libtiff.git",
+      "project": "libtiff",
+      "revision": "b28076b056eba9d665881bab139d21b21137fd2d",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-7607": {
+      "repository_url": "https://sourceware.org/git/elfutils.git",
+      "project": "elfutils",
+      "revision": "release:0.168",
+      "revision_kind": "release",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-7610": {
+      "repository_url": "https://sourceware.org/git/elfutils.git",
+      "project": "elfutils",
+      "revision": "release:0.168",
+      "revision_kind": "release",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-7611": {
+      "repository_url": "https://sourceware.org/git/elfutils.git",
+      "project": "elfutils",
+      "revision": "release:0.168",
+      "revision_kind": "release",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-7612": {
+      "repository_url": "https://sourceware.org/git/elfutils.git",
+      "project": "elfutils",
+      "revision": "release:0.168",
+      "revision_kind": "release",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-7962": {
+      "repository_url": "https://github.com/jsummers/imageworsener.git",
+      "project": "imageworsener",
+      "revision": "fbfb0d477fb459eaf2f8e0868b87be0739133bef",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-8325": {
+      "repository_url": "https://github.com/jsummers/imageworsener.git",
+      "project": "imageworsener",
+      "revision": "fbfb0d477fb459eaf2f8e0868b87be0739133bef",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-9204": {
+      "repository_url": "https://github.com/jsummers/imageworsener.git",
+      "project": "imageworsener",
+      "revision": "e2f74906e9cca95ee48e7f019436b9635eab30ba",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-9205": {
+      "repository_url": "https://github.com/jsummers/imageworsener.git",
+      "project": "imageworsener",
+      "revision": "e2f74906e9cca95ee48e7f019436b9635eab30ba",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-9206": {
+      "repository_url": "https://github.com/jsummers/imageworsener.git",
+      "project": "imageworsener",
+      "revision": "e2f74906e9cca95ee48e7f019436b9635eab30ba",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-9207": {
+      "repository_url": "https://github.com/jsummers/imageworsener.git",
+      "project": "imageworsener",
+      "revision": "e2f74906e9cca95ee48e7f019436b9635eab30ba",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-9209": {
+      "repository_url": "https://github.com/qpdf/qpdf.git",
+      "project": "qpdf",
+      "revision": "b7302a9b727d28d59bff0f0f7d8d62ff6486aef6",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2017-9210": {
+      "repository_url": "https://github.com/qpdf/qpdf.git",
+      "project": "qpdf",
+      "revision": "b7302a9b727d28d59bff0f0f7d8d62ff6486aef6",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2018-10677": {
+      "repository_url": "https://github.com/miniupnp/ngiflib.git",
+      "project": "ngiflib",
+      "revision": "75b99202e4e57acab399ed07b4e8f94eddf1648a",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2018-10717": {
+      "repository_url": "https://github.com/miniupnp/ngiflib.git",
+      "project": "ngiflib",
+      "revision": "b588a2249c7abbfc52173e32ee11d6facef82f89",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2019-16346": {
+      "repository_url": "https://github.com/miniupnp/ngiflib.git",
+      "project": "ngiflib",
+      "revision": "3bb9980edf43087335058e2a3a66a25eed185859",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    },
+    "Vul4c:CVE-2019-16347": {
+      "repository_url": "https://github.com/miniupnp/ngiflib.git",
+      "project": "ngiflib",
+      "revision": "3bb9980edf43087335058e2a3a66a25eed185859",
+      "revision_kind": "git",
+      "poc_file": "VUL4C/exploit",
+      "poc_label": "Bundled PoC input",
+      "unit_test": "test_cmds.json#unit_test_cmd",
+      "unit_label": "Bundled project test suite"
+    }
+  }
+}

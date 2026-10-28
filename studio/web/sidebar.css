@@ -1,0 +1,28 @@
+/* Expanded navigation and a compact icon rail share the same controls. */
+.sidebar-header {display:flex; align-items:center; justify-content:space-between; gap:8px; padding:0 4px 30px}
+.sidebar-header .brand {padding:0; gap:10px; min-width:0}
+.sidebar-header .brand-logo {flex-shrink:0}
+.sidebar-toggle {display:inline-flex; align-items:center; justify-content:center; flex:0 0 30px; width:30px; height:32px; border:1px solid var(--border-soft); border-radius:8px; background:var(--code); color:var(--faint); transition:color .18s, background .18s, border-color .18s}
+.sidebar-toggle>.icon {width:17px; height:17px}
+.sidebar-toggle:hover {color:var(--accent); border-color:color-mix(in srgb,var(--accent) 40%,var(--border)); background:var(--accent-soft)}
+@media (min-width:681px) {
+  .shell {transition:grid-template-columns .2s ease}
+  .shell>.sidebar {overflow-y:auto; overflow-x:hidden; transition:width .2s ease, padding .2s ease}
+  .shell.sidebar-is-expanded {grid-template-columns:268px minmax(0,1fr)}
+  .shell.sidebar-is-expanded>.sidebar {width:268px; padding:28px 18px 22px}
+  .sidebar-is-expanded .brand-word, .sidebar-is-expanded .nav-label, .sidebar-is-expanded .nav-text, .sidebar-is-expanded .sidebar-bottom {display:block}
+  .sidebar-is-expanded .nav-badge {display:inline-flex}
+  .sidebar-is-expanded .nav-button {justify-content:flex-start; padding:12px 14px; width:100%}
+  .sidebar-is-expanded .nav-button.active:before {left:0}
+  .shell.sidebar-is-collapsed {grid-template-columns:80px minmax(0,1fr)}
+  .shell.sidebar-is-collapsed>.sidebar {width:80px; padding:28px 12px 22px}
+  .sidebar-is-collapsed .sidebar-header {flex-direction:column; gap:18px; padding:0 0 24px}
+  .sidebar-is-collapsed .brand {padding:0}
+  .sidebar-is-collapsed .brand-word, .sidebar-is-collapsed .nav-label, .sidebar-is-collapsed .nav-text, .sidebar-is-collapsed .nav-badge, .sidebar-is-collapsed .sidebar-bottom {display:none}
+  .sidebar-is-collapsed .nav-button {justify-content:center; width:100%; padding:14px 0}
+  .sidebar-is-collapsed .nav-button>.icon {flex-shrink:0}
+  .sidebar-is-collapsed .nav-button.active:before {left:0}
+}
+@media (max-width:680px) {
+  .sidebar-header {display:none}
+}

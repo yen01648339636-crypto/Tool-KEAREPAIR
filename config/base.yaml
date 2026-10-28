@@ -1,0 +1,122 @@
+# KeaRepair shared defaults. Use offline.yaml or online.yaml as the entry point.
+
+# Paths
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  indices_dir: "data/indices/knowledge_v2"
+
+# Model configurations
+models:
+  llm:
+    # 支持的 provider: openai / anthropic / gemini / mock
+    # openai: 表示"OpenAI-兼容 API"，可通过第三方网关转发到 Gemini 等模型
+    # provider 和 model_name 由 offline.yaml / online.yaml 分别指定
+    provider: ""
+    model_name: ""
+    base_url: ""  # 第三方网关
+    temperature: 0.0
+    max_tokens: 16384
+    temperature_policy: "send"  # 不支持 temperature 的模型显式设为 omit
+    token_limit_parameter: "max_tokens"  # OpenAI 兼容接口可显式改用 max_completion_tokens
+  
+  code_encoder:
+    model_name: "codellama/CodeLlama-7b-hf"
+    revision: "6c284d1468fe6c413cf56183e69b194dcfa27fe6"
+    pooling: "masked_mean"  # 最后一层，对非 padding token 求均值（含特殊 token）
+    max_length: 2048
+    truncation_side: "right"
+    batch_size: 1
+    dtype: "float32"        # GPU 可显式设为 float16 / bfloat16
+    local_files_only: false
+
+  embeddings:
+    dimension: 384
+    model_name: "all-MiniLM-L6-v2"  # 不需要 sentence-transformers/ 前缀
+
+# Offline indexing
+offline:
+  multiview:
+    views: ["data_flow", "control_flow"]
+    extraction_prompts:
+      data_flow: "prompts/offline/patch_guided/data_flow.txt"
+      control_flow: "prompts/offline/patch_guided/control_flow.txt"
+
+  dataset:
+    max_code_length: null  # 默认不裁剪；显式限制超长样本时，校验失败并写入清单
+  
+  distillation:
+    prompts:
+      without_patch: "prompts/offline/distill/without_patch.txt"
+  
+  vector_store:
+    type: "faiss"  # faiss, chroma, or milvus
+    index_type: "IVFFlat"
+    nlist: 100
+
+# Online inference
+online:
+  source_context:
+    strategy: "full"   # 可显式选择 line_range，需 start_line / end_line / line_hint_source
+  phase1_diagnosis:
+    enabled: true      # false = no_diagnosis：改用无工具 LLM 根因报告
+    max_tool_calls: 15
+    max_rounds: 15
+    history_turns: 3
+    tools:
+      - "trace_data_flow"
+      - "is_path_reachable"
+      - "inspect_api_usage"
+  
+  phase2_retrieval:
+    enabled: true      # false = 消融：不检索、不向修复 prompt 注入 exemplar（等同 --no-retrieval）
+    views: ["data_flow", "control_flow"]
+    top_k_per_view: 10
+    final_top_k: 4
+    reranking:
+      behavior_weight: 0.7
+      code_weight: 0.3
+      bm25:
+        k1: 1.5
+        b: 0.75
+        statistics_scope: "candidate_pool"
+        normalization: "min_max"
+        equal_scores: "zero"
+        tokenizer: "identifier_words_v1"
+  
+  phase3_repair:
+    max_iterations: 5
+    max_exemplars: 4
+    single_attempt: false
+    validation:
+      compile_timeout: 30
+      test_timeout: 1200
+      compiler: "gcc"
+      execution_mode: "docker"  
+
+# Stage sampling settings
+sampling:
+  extraction: {temperature: 0.0, max_tokens: 1024}
+  blind: {temperature: 0.0, max_tokens: 1024}
+  distillation: {temperature: 0.0, max_tokens: 512}
+  query: {temperature: 0.0, max_tokens: 1024}
+  diagnosis: {temperature: 0.0, max_tokens: 16384}
+  diagnosis_report: {temperature: 0.0, max_tokens: 4096}
+  initial_repair: {temperature: 0.0, max_tokens: 16384}
+  refine_repair: {temperature: 0.0, max_tokens: 16384}
+
+# Logging
+logging:
+  level: "DEBUG"  
+  format: "<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan> - <level>{message}</level>"
+  log_file: "logs/kearepair.log"
+
+# Experiment settings
+experiment:
+  pricing_snapshot: null  # 用户提供带日期、来源和精确模型名的价格快照；缺省不估价
+  variant: "full"  # full / df_only / cf_only / no_retrieval / no_diagnosis / no_iteration
+  mode: "standard"
+  schema_version: "1.0"
+  seed: 42
+  device: "cpu"  # cuda or cpu
+  num_workers: 4

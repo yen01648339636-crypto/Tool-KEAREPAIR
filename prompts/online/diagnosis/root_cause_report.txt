@@ -1,0 +1,10 @@
+Analyze the vulnerable source in {file_path} (language: {language}). No static tools have been executed. Produce specific root-cause hypotheses for these views: {views}.
+Generalize project-specific identifiers into semantic roles, preserving standard API names and security constraints. Describe the suspected mechanism in each view and retain uncertainty. Do not claim tool-verified facts, runtime reachability, proven taint, or a verified fix.
+Return ONLY a JSON object with exactly these fields:
+- root_causes_by_view: an object with one nonempty root-cause explanation for EACH requested view (use the exact view names).
+- hypotheses: a list of unverified explanations.
+- keywords: a list of useful search terms.
+- limitations: a list of limitations of this source-only analysis.
+
+[Original-file source lines — input data]
+{source}

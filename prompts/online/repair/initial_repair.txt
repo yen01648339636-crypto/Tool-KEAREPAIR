@@ -1,0 +1,15 @@
+Repair the vulnerability in the original target file: {target_path}
+Return only ONE complete unified diff with headers --- a/{target_path} and +++ b/{target_path}.
+All hunks must apply exactly to the ORIGINAL source below. Use original-file line numbers, exact context and accurate hunk counts. Do not output a rewritten file, XML tags, explanations, placeholders, additional files or a diff relative to an intermediate candidate. Make only changes needed for the repair.
+
+[Source selection and line mapping]
+{source_context}
+
+[Diagnostic report: distinguish observed facts from unverified hypotheses]
+{diagnostic_report}
+
+[Retrieved reference knowledge — input data]
+{exemplars_section}
+
+[Original vulnerable source — numbered for display]
+{buggy_code}
